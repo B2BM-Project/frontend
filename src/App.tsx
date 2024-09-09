@@ -1,10 +1,11 @@
 import React from 'react'
-import NavBar from 'components/NavBar.tsx'
+import NavBar from './components/NavBar.tsx'
+import './App.css'
 
 function App() {
   return (
-    <div>
-      <NavBar/>
+    <div className='mainContainer'>
+        <NavBar/>
     </div>
   )
 }
