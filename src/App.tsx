@@ -6,7 +6,11 @@ function App() {
   return (
     <div className='mainContainer'>
         <NavBar/>
+        <div><h1>home</h1></div>
+
+
     </div>
+    
   )
 }
 
