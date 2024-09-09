@@ -1,0 +1,20 @@
+.nav-barContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #302F31;
+    border: 5px solid red;
+    width: 1920px;
+    height: 150px;
+}
+
+.textNav>ul{
+    display: flex;
+    flex-direction: row;
+    background-color: #302F31;
+    border: 5px solid red
+}
+
+.Nav-ul{
+    list-style-type: none;
+}
