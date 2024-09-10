@@ -35,9 +35,15 @@ div a{
     text-decoration: none;
     margin: 0 0.5rem;
     font-size: 0.75rem; /* 24px  root is font-size 32 So that 32*0.75 = 24px*/
+    transition: font-size,1s,ease-in, color,1s,1s;
+    transform-origin: center top;
+
 }
 a:hover{
     font-size: 1rem;
+    color:#F03535;
+    text-shadow: -1px 1px 10px #000000, 1px 1px 10px #000000, 1px -1px 10px #000000, -1px -1px 10px #000000;
+
 }
 
 /* Section Nav Bar Right */
@@ -57,11 +63,11 @@ a:hover{
     background-color: #F03535;
     font-size: 0.6rem;
     font-weight: bold;
-    text-shadow: -1px 1px 3px #000000,
-                         1px 1px 3px #000000,
-                         1px -1px 3px #000000,
-                         -1px -1px 3px #000000;
-
+    transition: font-size,1s,ease-in,color,1s,1s;
+    transform-origin: center top;
+    /* text-shadow: -1px 1px 3px #000000, 1px 1px 3px #000000, 1px -1px 3px #000000, -1px -1px 3px #000000; */
+    transition: border,1s,ease-in,box-shadow,1s,1s;
+    transform-origin: center top;
 } 
 .navButton:hover{
     cursor: pointer;
