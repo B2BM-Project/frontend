@@ -1,23 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Mada:wght@200..900&display=swap');
 
 *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: "Mada", sans-serif;
-    font-weight: bold;
+    font-weight: 600;
     font-style: normal;
-    font-size: 24px;
-    width: 100%;   
+    font-size: 32px;
     background-color: #272528;
-}
-.mainContainer{
-    display: flex;
-    flex-direction: column;
-    /* border: 2px solid blue; */
-    width : 100%;
-    min-height: 1080px;
-    /* height: 1080px; */
+    
 }
 
-h1 {
-    display: flex;
-    justify-content: center;
-}
+
