@@ -4,6 +4,7 @@ function App() {
   return (
     <>
         <NavBar/>
+        <h1>Home</h1>
     </>
 
     

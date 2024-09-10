@@ -9,9 +9,9 @@ nav{
     /* border: 2px solid red; */
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    
+    align-items: center;    
 }
+
 div{
     background-color: #302F31;  
 }
