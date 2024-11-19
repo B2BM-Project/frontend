@@ -1,10 +1,11 @@
 import NavBar from '../components/NavBar'
+import TopicPage from '../components/TopicPage'
 
 function Package() {
   return (
     <div>
       <NavBar/>
-      <h1>Package</h1>
+      <TopicPage page="Package" />
     </div>
   )
 }

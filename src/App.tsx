@@ -1,10 +1,11 @@
 import NavBar from './components/NavBar.tsx'
+import TopicPage from './components/TopicPage.tsx'
 
 function App() {
   return (
     <>
         <NavBar/>
-        <h1>Home</h1>
+        <TopicPage page="Home" />
     </>
 
     

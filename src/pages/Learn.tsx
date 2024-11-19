@@ -1,11 +1,11 @@
-import React from 'react'
 import NavBar from '../components/NavBar'
+import TopicPage from '../components/TopicPage'
 
 function Learn() {
   return (
     <div>
       <NavBar/>
-      <h1>Learn</h1>
+      <TopicPage page="Learn" />
     </div>
   )
 }

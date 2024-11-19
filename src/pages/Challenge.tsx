@@ -1,12 +1,10 @@
-import React from 'react'
 import NavBar from '../components/NavBar'
-
+import TopicPage from '../components/TopicPage'
 function Challenge() {
   return (
     <div>
       <NavBar/>
-      <h1>Challenge</h1>
-   
+      <TopicPage page="Challenge" />    
     </div>
   )
 }
