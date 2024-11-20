@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     element: <Package/>,
   },
   {
-    path: "/TopicDetail",
+    path: "/topic-detail",
     element: <TopicDetail/>,
   },
 ]);
