@@ -1,5 +1,6 @@
 import NavBar from "../components/NavBar";
 import TopicPage from "../components/TopicPage";
+import "./TopicDetail.css"
 
 function TopicDetail() {
     return (
