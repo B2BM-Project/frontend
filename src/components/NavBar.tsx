@@ -9,7 +9,7 @@ function NavBar() {
     <nav>
       <Link to = '/'>
       <div className="nav-left">
-          <img src={logo} alt="logo" />
+          <img className="logoImg" src={logo} alt="logo" />
       </div>
       </Link>
       <div className="nav-center">

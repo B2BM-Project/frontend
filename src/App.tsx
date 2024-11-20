@@ -5,11 +5,14 @@ function App() {
   return (
     <>
         <NavBar/>
-        <TopicPage page="Home" />
+        <div className="mainContainer">
+            <div className="bgFrame">
+              <TopicPage page="Home" />
+            </div>
+        </div> 
     </>
-
-    
   )
 }
 
 export default App
+

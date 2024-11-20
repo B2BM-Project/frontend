@@ -5,7 +5,11 @@ function Learn() {
   return (
     <div>
       <NavBar/>
-      <TopicPage page="Learn" />
+        <div className="mainContainer">
+            <div className="bgFrame">
+            <TopicPage page="OWASP Top 10" />            
+            </div>
+        </div> 
     </div>
   )
 }

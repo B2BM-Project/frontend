@@ -3,10 +3,14 @@ import TopicPage from '../components/TopicPage'
 
 function Package() {
   return (
-    <div>
+    <>
       <NavBar/>
-      <TopicPage page="Package" />
-    </div>
+      <div className='mainContainer'>
+        <div className="bgFrame">
+          <TopicPage page="Upgrade Package" />       
+        </div>
+      </div>
+    </>
   )
 }
 

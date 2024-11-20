@@ -3,11 +3,14 @@ import TopicPage from '../components/TopicPage'
 
 function Competition() {
   return (
-    <div>
+    <>
       <NavBar/>
-      <TopicPage page="Competition" />
-      <h1>Competition</h1>
-    </div>
+      <div className='mainContainer'>
+        <div className="bgFrame">
+          <TopicPage page="Competition" />
+        </div>
+      </div>
+    </>
   )
 }
 

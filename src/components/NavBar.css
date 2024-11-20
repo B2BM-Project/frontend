@@ -12,24 +12,24 @@ nav{
     align-items: center;    
 }
 
-div{
+.nav-center{
     background-color: #302F31;  
 }
 
 /* Section Nav Bar Left */
-img{
+.logoImg{
     width: 165px ;
     height: 96px;
     background-color: #302F31;
     display: flex;
     align-items: center;
 }
-img:hover{
+.logoImg:hover{
     cursor: pointer;
 }
 
 /* Section Nav Bar Center */
-div a{
+.nav-center a{
     color: #FFFF;
     background-color: #302F31;
     text-decoration: none;
@@ -39,7 +39,7 @@ div a{
     transform-origin: center top;
 
 }
-a:hover{
+.nav-center a:hover{
     font-size: 1rem;
     color:#F03535;
     text-shadow: -1px 1px 10px #000000, 1px 1px 10px #000000, 1px -1px 10px #000000, -1px -1px 10px #000000;
@@ -75,5 +75,5 @@ a:hover{
     background-color: #F03535;
     border: 3px solid white;
     box-shadow: 0.5px -0.5px 20px rgb(171, 169, 169);
-
+    
 }

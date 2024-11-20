@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Mada:wght@200..900&display=swap');
 
+html,body,#root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #272528;
+}
 *{
     margin: 0;
     padding: 0;
@@ -8,9 +14,153 @@
     font-weight: 600;
     font-style: normal;
     font-size: 32px;
-    background-color: #272528;
+    /* background-color: #272528; */
     color: white;
     
 }
 
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /* border: 2px solid purple; */
+    background-color: #272528;
+    min-height: 100%;
+    padding: 2rem 2rem 2rem 2rem;
+}
 
+/* สำหรับกรอบพื้นหลัง */
+.bgFrame{
+    margin: 0.5rem 0 0.5rem 0;
+    background-color: #302F31;
+    padding: 0 1.5rem 1rem 1.5rem;
+    width: 40rem; /* 1280 px */
+    height: fit-content;
+    min-width: 40%;
+    width: 80%;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+/* ======== TopicDetail Page ========  */
+.contentParagraph {
+    font-size: 16px;
+    text-indent: 5%;
+    padding: 0.2rem 0.5rem 0.3rem 0.5rem;
+    text-align: justify; /* จัดให้หลังเท่า */
+    /* border: 3px solid rgb(0, 0, 0); */
+}
+.HowToPrevent, li {
+    font-size: 0.5rem;
+    padding: 0.2rem 0.5rem 0.5rem 0.5rem;
+    list-style-type: disc;
+    list-style-position: inside;
+    padding-bottom: 0.3rem;
+}
+
+.subTopic{
+    font-size: 22px;
+    margin: 0.2rem 0 0.2rem 0;
+    /* border: 3px solid rgb(0, 0, 0); */
+}
+
+.contentImg{
+    display: block;
+    margin: 0.2rem auto 0.3rem auto;
+    width: 50%;
+    height: auto;
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.beginBtn {
+    width:400px;
+    height: 50px;
+    border-radius: 15px;
+    background-color: #B32E1C;
+    font-size: 22px;
+}
+.beginBtn:hover{
+    border: 3px solid white;
+    box-shadow: 0.5px -0.5px 10px rgb(171, 169, 169);
+}
+.flag-container1{
+    display: flex;
+    justify-content: center; 
+    margin-bottom: 1.5rem;
+    
+}
+.flag-container1 p{
+    font-size: 0.6rem;
+}
+.flag-container-div1{
+    background-color: #B32E1C;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    border-radius: 15px 0 0 15px;
+}
+.flag-container-div2{
+    background-color: #272528;
+    padding: 0.2rem 1rem 0.2rem 0.8rem;
+    border-radius: 0 15px 15px 0;
+}
+.flag-container2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.flag-container2 div ,.flag-container2 p,.linkDL{
+    margin: 0.2rem 0 0.2rem 0;
+    font-size: 22px;
+}
+.dlBtn{
+    border: 3px solid #FFFFFF;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    border-radius: 15px;
+}
+.dlBtn:hover{
+    border: 3px solid white;
+    box-shadow: 0.5px -0.5px 10px rgb(171, 169, 169);
+}
+.linkDL{
+    color: #99C3FF;
+}
+.linkDL:hover{
+    text-decoration: underline;
+}
+
+.flag-container3 {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 1rem 0;
+}
+.flag-container3 label{
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+#txtInput{
+    background-color: #D9D9D9;
+    color: #000;
+    font-weight: 600;
+    padding-left: 0.5rem;
+    width: 70%;
+    height: 41px;
+    border-radius: 10px 0 0 10px;
+}
+#txtInput::placeholder{
+    font-size: 0.5rem;
+}
+#submitInput{
+    background-color: #B32E1C;
+    font-size: 0.7rem;
+    padding: 0 0.2rem 0 0.2rem;
+    height: 41px;
+    width: 30%;
+    border-radius: 0 10px 10px 0;
+}
+
+
+/* ==================================== */
