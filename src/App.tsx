@@ -1,14 +1,18 @@
 import NavBar from './components/NavBar.tsx'
+import TopicPage from './components/TopicPage.tsx'
 
 function App() {
   return (
     <>
         <NavBar/>
-        <h1>Home</h1>
+        <div className="mainContainer">
+            <div className="bgFrame">
+              <TopicPage page="Home" />
+            </div>
+        </div> 
     </>
-
-    
   )
 }
 
 export default App
+

@@ -7,6 +7,7 @@ import Challenge from "./pages/Challenge.tsx";
 import Competition from "./pages/Competition.tsx";
 import Package from "./pages/Package.tsx";
 import App from "./App.tsx";
+import TopicDetail from "./pages/TopicDetail.tsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/package",
     element: <Package/>,
+  },
+  {
+    path: "/topic-detail",
+    element: <TopicDetail/>,
   },
 ]);
 

@@ -1,11 +1,15 @@
-import React from 'react'
 import NavBar from '../components/NavBar'
+import TopicPage from '../components/TopicPage'
 
 function Learn() {
   return (
     <div>
       <NavBar/>
-      <h1>Learn</h1>
+        <div className="mainContainer">
+            <div className="bgFrame">
+            <TopicPage page="OWASP Top 10" />            
+            </div>
+        </div> 
     </div>
   )
 }

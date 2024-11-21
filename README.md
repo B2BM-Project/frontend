@@ -17,3 +17,5 @@ npm run dev
 ```
 npm install react-router-dom
 ```
+
+### Install Tailwind and Plugin daisyui for vite

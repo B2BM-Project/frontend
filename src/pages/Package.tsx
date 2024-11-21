@@ -1,11 +1,16 @@
 import NavBar from '../components/NavBar'
+import TopicPage from '../components/TopicPage'
 
 function Package() {
   return (
-    <div>
+    <>
       <NavBar/>
-      <h1>Package</h1>
-    </div>
+      <div className='mainContainer'>
+        <div className="bgFrame">
+          <TopicPage page="Upgrade Package" />       
+        </div>
+      </div>
+    </>
   )
 }
 

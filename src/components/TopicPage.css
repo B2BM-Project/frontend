@@ -1,0 +1,9 @@
+h1 {
+    font-family: "Mada", sans-serif;
+    font-weight: 700;
+    font-size: 1rem; /*1rem = 32px*/
+    margin: 1rem 0 1rem 0; /* top right bottom left*/
+    background-color: #302F31;
+    text-align: center;
+    /* border: 2px solid red; */
+} 
