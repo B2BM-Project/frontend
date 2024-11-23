@@ -19,3 +19,8 @@ npm install react-router-dom
 ```
 
 ### Install Tailwind and Plugin daisyui for vite
+[Tailwind CSS with Vite Framework](https://tailwindcss.com/docs/guides/vite)  
+[daisyUI Document](https://daisyui.com/docs/install/)
+
+### Install react-slick for slider component
+[React Slick Document](https://react-slick.neostack.com/docs/get-started)  

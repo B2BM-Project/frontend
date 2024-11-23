@@ -8,6 +8,7 @@ import Competition from "./pages/Competition.tsx";
 import Package from "./pages/Package.tsx";
 import App from "./App.tsx";
 import TopicDetail from "./pages/TopicDetail.tsx";
+import SelectLesson from "./pages/SelectLesson.tsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/topic-detail",
     element: <TopicDetail/>,
+  },
+  {
+    path: "/select-lesson",
+    element: <SelectLesson/>,
   },
 ]);
 
