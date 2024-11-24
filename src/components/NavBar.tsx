@@ -2,12 +2,8 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 import '../App.css'
 import logo from '../assets/logo.png'
-import { useState } from "react";
-import Loginpopup from "./Loginpopup";
 
-function NavBar() {
-
-  const [openPopup, setOpenpopup] = useState(false);
+function NavBar({ onLoginClick }) {
 
   return (
     <nav>
@@ -23,9 +19,8 @@ function NavBar() {
           <Link to="/package">Package</Link>
       </div>
       <div className="nav-right">
-          <button className="navButton" onClick={() => setOpenpopup(true)}>Login</button>
+          <button className="navButton" onClick={onLoginClick}>Login</button>
       </div>
-      <Loginpopup isOpen={openPopup} onClose={() => setOpenpopup(false)}/>
     </nav>
     
   );

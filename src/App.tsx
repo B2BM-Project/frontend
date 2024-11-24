@@ -1,10 +1,20 @@
 import NavBar from './components/NavBar.tsx'
+import Loginpopup from './components/Loginpopup.tsx';
+import { useState } from "react";
 
 function App() {
+
+  const [isLoginOpen, setLoginOpen] = useState(false);
+
+
   return (
     <>
         <div className='data-theme="mytheme"'>
-        <NavBar/>
+        <NavBar onLoginClick={() => setLoginOpen(true)} />
+
+        <Loginpopup isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} />
+
+
         <div className="mainContainer">
             <div className="bgFrame">
               <div className='text-center text-[#F03535] text-[96px] font-bold bg-[#302F31]'>
