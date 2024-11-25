@@ -1,4 +1,6 @@
-import NavBar from '../components/NavBar'
+import NavBar from '../components/NavBar.tsx'
+import Loginpopup from '../components/Loginpopup.tsx';
+import { useState } from "react";
 import TopicPage from '../components/TopicPage'
 import SliderCard from '../components/SliderCard'
 import "./Challenge.css"
@@ -6,6 +8,8 @@ import "./Challenge.css"
 // import { useState, useEffect } from 'react';
 
 function Challenge() {
+  const [isLoginOpen, setLoginOpen] = useState(false);
+
 //   const [data, setData] = useState([]);
 //   useEffect(() =>{
 //     axios.get('')
@@ -15,10 +19,12 @@ function Challenge() {
 //         console.log(err)
 //     })
 // }, [])
-  
+
   return (
     <>
-        <NavBar/>
+        <NavBar onLoginClick={() => setLoginOpen(true)} />
+        <Loginpopup isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} />
+
         <div className="mainContainer">
             <div className="bgFrame">
               <TopicPage page="Challenge" />

@@ -3,8 +3,8 @@ import "./NavBar.css";
 import '../App.css'
 import logo from '../assets/logo.png'
 
+function NavBar({ onLoginClick }: {onLoginClick:any}) {
 
-function NavBar() {
   return (
     <nav>
       <Link to = '/'>
@@ -19,9 +19,10 @@ function NavBar() {
           <Link to="/package">Package</Link>
       </div>
       <div className="nav-right">
-          <button className="navButton">Sign in</button>
+          <button className="navButton" onClick={onLoginClick}>Login</button>
       </div>
     </nav>
+    
   );
 }
 
