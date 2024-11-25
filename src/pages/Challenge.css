@@ -46,5 +46,19 @@
 }
 .slider-div>div{
     display: flex;
-    justify-content: center;
+    justify-content: center; 
+}
+
+.category-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0.5rem;
+}
+.category-container>a{
+    font-size: 0.8rem;
+    color: #99C3FF;
+}
+.category-container>a:hover{
+    text-decoration: underline;
 }

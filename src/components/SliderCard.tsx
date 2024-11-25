@@ -5,7 +5,6 @@ import Card from '../components/Card'
 import "../pages/Challenge.css"
 
 // Mockup API 
-// Mockup API 
 const data=[
     {
         id: 1,
@@ -17,7 +16,7 @@ const data=[
     },
     {
         id: 2,
-        type: 'Beginner',
+        type: 'Hard',
         title: 'Beginer 2',
         description: 'คำสั่งสำหรับทดสอบระบบ',
         image: 'https://www.foley.com/wp-content/uploads/2024/08/cybersecuritylock1680x680.jpg', 
@@ -25,7 +24,7 @@ const data=[
     },
     {
         id: 3,
-        type: 'Beginner',
+        type: 'cryto',
         title: 'Beginer 3',
         description: 'คำสั่งสำหรับทดสอบระบบ',
         image: 'https://www.mckinsey.com/spContent/bespoke/tech-trends-2024-hero-nav/techtrends-hero-desktop.jpg', 
@@ -33,7 +32,7 @@ const data=[
     },
     {
         id: 4,
-        type: 'Beginner',
+        type: 'Web',
         title: 'Beginer 4',
         description: 'คำสั่งสำหรับทดสอบระบบ',
         image: 'https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_640.jpg', 
@@ -41,7 +40,7 @@ const data=[
     },
     {
         id: 5,
-        type: 'Beginner',
+        type: 'Normal',
         title: 'Beginer 5',
         description: 'คำสั่งสำหรับทดสอบระบบ',
         image: 'https://online.stanford.edu/sites/default/files/styles/widescreen_tiny/public/2019-07/hack-lab_INTLPOL268.jpg',
@@ -49,7 +48,7 @@ const data=[
     },
     {
         id: 6,
-        type: 'Beginner',
+        type: 'pwn',
         title: 'Beginer 6',
         description: 'คำสั่งสำหรับทดสอบระบบ',
         image: 'https://online.stanford.edu/sites/default/files/styles/widescreen_tiny/public/2019-07/hack-lab_INTLPOL268.jpg', 
@@ -57,7 +56,7 @@ const data=[
     },
 ]
 
-function SliderCard() {
+function SliderCard(props: { category: string;}) {
     const settings = {
         dots: true,
         infinite: true,
@@ -65,9 +64,12 @@ function SliderCard() {
         slidesToShow: 2,
         slidesToScroll: 2,
     };
-
     return (
         <>
+            <div className="category-container">
+                <p>{props.category}</p>
+                <a href="http://localhost:5173/select-lesson">show all</a>
+            </div>
             <Slider {...settings}>
                 {data.map((item,idx) => {
                     return(

@@ -24,3 +24,6 @@ npm install react-router-dom
 
 ### Install react-slick for slider component
 [React Slick Document](https://react-slick.neostack.com/docs/get-started)  
+
+### Install axios for fetch API
+[axios Document](https://axios-http.com/docs/intro)
