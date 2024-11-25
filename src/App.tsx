@@ -6,14 +6,11 @@ function App() {
 
   const [isLoginOpen, setLoginOpen] = useState(false);
 
-
   return (
     <>
         <div className='data-theme="mytheme"'>
         <NavBar onLoginClick={() => setLoginOpen(true)} />
-
         <Loginpopup isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} />
-
 
         <div className="mainContainer">
             <div className="bgFrame">

@@ -3,7 +3,7 @@ import "./NavBar.css";
 import '../App.css'
 import logo from '../assets/logo.png'
 
-function NavBar({ onLoginClick }) {
+function NavBar({ onLoginClick }: {onLoginClick:any}) {
 
   return (
     <nav>
