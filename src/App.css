@@ -1,45 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Mada:wght@200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mada:wght@200..900&display=swap");
 
-html,body,#root {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    background-color: #272528;
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: #272528;
 }
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Mada", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 32px;
-    /* background-color: #272528; */
-    color: white;
-    
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Mada", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 32px;
+  /* background-color: #272528; */
+  color: white;
 }
 
-.mainContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    /* border: 2px solid purple; */
-    background-color: #272528;
-    min-height: 100%;
-    padding: 2rem 2rem 2rem 2rem;
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* border: 2px solid purple; */
+  background-color: #272528;
+  min-height: 100%;
+  padding: 2rem 2rem 2rem 2rem;
 }
 
 /* สำหรับกรอบพื้นหลัง */
-.bgFrame{
-    margin: 0.5rem 0 0.5rem 0;
-    background-color: #302F31;
-    padding: 0 1.5rem 1rem 1.5rem;
-    width: 40rem; /* 1280 px */
-    height: fit-content;
-    min-width: 40%;
-    width: 80%;
-    border: 3px solid rgb(0, 0, 0);
-    border-radius: 20px;
+.bgFrame {
+  margin: 0.5rem 0 0.5rem 0;
+  background-color: #302f31;
+  padding: 0 1.5rem 1rem 1.5rem;
+  width: 40rem; /* 1280 px */
+  height: fit-content;
+  min-width: 40%;
+  width: 80%;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 20px;
 }
-
