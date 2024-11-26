@@ -28,10 +28,10 @@ function Challenge() {
         <div className="mainContainer">
             <div className="bgFrame">
               <TopicPage page="Challenge" />
-              <SliderCard category="Beginner"/>
-              <SliderCard category="Web"/>
-              <SliderCard category="pwn"/>
-              <SliderCard category="Crypto"/>
+              <SliderCard category="Beginner" title="" description="" img_path="" route_path=""/>
+              <SliderCard category="Web" title="" description="" img_path="" route_path=""/>
+              <SliderCard category="pwn" title="" description="" img_path="" route_path=""/>
+              <SliderCard category="Crypto" title="" description="" img_path="" route_path=""/>
             </div>
         </div> 
     </>
