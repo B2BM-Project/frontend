@@ -1,4 +1,3 @@
-
 function Card(props: { title: string ; description: string; route_path: string;img_path: string;}) {
   return (
     <div>
@@ -6,7 +5,7 @@ function Card(props: { title: string ; description: string; route_path: string;i
             <figure>
                 <a href={props.route_path}><img className="card-img"
                 src={props.img_path}
-                alt="Shoes" /></a>
+                alt="img" /></a>
             </figure>
             <div className="card-body">
                 <a href={props.route_path}id="card-title" className="card-title">{props.title} </a>

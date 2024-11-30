@@ -3,6 +3,7 @@ import TopicPage from "../components/TopicPage";
 import "./TopicDetail.css"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 function TopicDetail() {
@@ -15,7 +16,7 @@ function TopicDetail() {
         // ฟังก์ชันเพื่อดึงข้อมูล
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://127.0.0.1:5100/detail");
+                const response = await axios.get("http://127.0.0.1:5100/detail/3");
                 setData(response.data);
             } catch (err) {
                 setError(err.message);
@@ -34,10 +35,10 @@ function TopicDetail() {
         <NavBar onLoginClick={undefined} />
         <div className="mainContainer">
             <div className="bgFrame">
-                {data.topic_detail?.map((item,index) => (
+                {data?.topic_detail?.map((item,index) => (
                     <div  key={index}>
                     {/* หัวข้อ */}
-                    <TopicPage page="A04 Insecure Design คิดว่าจะใช้ props หรือเพิ่มชื่อหัวข้อใน API" />
+                    <TopicPage page={item.title} />
                     {/* หัวข้อตัวอย่างการโจมตี */}
                     <p className="subTopic">คำอธิบาย (Description)</p>
                     {/* แสดงข้อความจาก array ของ description */}
