@@ -11,6 +11,7 @@ function App() {
         <div className='data-theme="mytheme"'>
         <NavBar onLoginClick={() => setLoginOpen(true)} />
         <Loginpopup isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} />
+        
 
         <div className="mainContainer">
             <div className="bgFrame">
