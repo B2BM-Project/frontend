@@ -89,10 +89,7 @@ function TopicDetail() {
                     {data?.topic_detail?.map((item,index) => (
                     <ol>
                         {item.proposition?.map((propo, index) => (
-                        <li key={index}>{propo.sub}
-                            {/* แสดงเฉพาะ img ที่มีค่า */}
-                            {propo.img && <img className="contentImg" src={propo.img} alt={`HowtoPrevent ${index}`} />}
-                        </li>
+                        <li key={index}>{propo.sub} </li>
                         ))}
                     </ol>
                     ))}
