@@ -89,7 +89,7 @@ function TopicDetail() {
                     {data?.topic_detail?.map((item,index) => (
                     <ol>
                         {item.proposition?.map((propo, index) => (
-                        <li key={index}>{propo.sub} </li>
+                        <li key={index}>{propo.sub}</li>
                         ))}
                     </ol>
                     ))}
