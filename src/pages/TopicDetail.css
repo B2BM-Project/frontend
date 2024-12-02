@@ -121,6 +121,8 @@
     border: 3px solid white;
     cursor: pointer;
 }
-
+ol>li{
+    list-style-type: decimal;
+}
 
 /* ==================================== */

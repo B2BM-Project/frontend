@@ -75,10 +75,6 @@ function TopicDetail() {
                 </div>
                 ))}
 
-                {/* ปุ่ม Begin */}
-                <div className="btnContainer">
-                    <button className="beginBtn">Begin Challenge</button>
-                </div>
             </div>
 
             {/* กรอบ Flag Submition */}
@@ -88,11 +84,27 @@ function TopicDetail() {
                     <div className="flag-container-div1"><p>Challenge done</p></div>
                     <div className="flag-container-div2"><p>1801 solves</p></div>
                 </div>
+                {/* แสดง Explain Proposition */}
+                    <p className="subTopic">โจทย์ (Proposition)</p>
+                    {data?.topic_detail?.map((item,index) => (
+                    <ol>
+                        {item.proposition?.map((propo, index) => (
+                        <li key={index}>{propo.sub}
+                            {/* แสดงเฉพาะ img ที่มีค่า */}
+                            {propo.img && <img className="contentImg" src={propo.img} alt={`HowtoPrevent ${index}`} />}
+                        </li>
+                        ))}
+                    </ol>
+                    ))}
                 {/* download or link  */}
                 <div className="flag-container2">
                     <div><button className="dlBtn">Download File</button></div>
                     <div><p>or</p></div>
                     <div><a className="linkDL" href="https://google.com" target="_blank">www.google.com</a></div>
+                </div>
+                {/* ปุ่ม Begin */}
+                <div className="btnContainer">
+                    <button className="beginBtn">Begin Challenge</button>
                 </div>
                 {/* submit form  */}
                 <div className="flag-container3">
@@ -104,7 +116,6 @@ function TopicDetail() {
                         <input id="submitInput" type="submit" value="Submit" />
                         </form>
                 </div>
-
             </div>
         </div>
         </>
