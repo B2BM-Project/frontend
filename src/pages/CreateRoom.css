@@ -1,0 +1,152 @@
+/* css ของหน้า CreateRoom, Lobby, CreateTask */
+.input-container{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 1rem;
+}
+.text-box{
+    background: #D9D9D9;
+    color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.7rem;
+    /* width: 30rem; */
+    width: 100%;
+    min-height: 1.7rem;
+}
+.textarea-box{
+    background: #D9D9D9;
+    color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.7rem;
+    /* width: 30rem; */
+    width: 100%;
+    min-height: 3rem;
+}
+.check-box{
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-right: 0.3rem;
+}
+.button-container{
+    text-align: center;
+    margin: 1rem 0;
+    
+}
+.btn-red{
+    border: 3px solid #E34C4C;
+    border-radius: 15px;    
+    padding: 5px 15px;
+    margin: 0 0.5rem;
+    font-size: 0.9rem;
+    background-color: #E34C4C;
+    min-width: 146px;
+}
+.btn-red:hover{
+    border: 3px solid white;
+    box-shadow: 0.5px -0.5px 10px rgb(171, 169, 169);
+}
+.btn-black{
+    border: 3px solid #FFFFFF;
+    border-radius: 15px;    
+    padding: 5px 15px;
+    margin: 0 0.5rem;
+    font-size: 0.9rem;
+    min-width: 146px;
+}
+.btn-black:hover{
+    border: 3px solid white;
+    box-shadow: 0.5px -0.5px 10px rgb(171, 169, 169);
+}
+.togglePwd{
+    position: relative;
+}
+.togglePwd i {
+    position: absolute;
+    left: 94%;
+    top: 12px;
+    cursor: pointer;
+    color: #302f31;
+}
+button i {
+    padding: 5px 5px 0 0;
+}
+
+/* ======== CreateTask Page ========  */
+.input-container2{
+    margin: 1rem 1rem;
+    display: flex;
+    justify-content: space-between
+
+}
+.timeSelect,option{
+    margin: 0 0.5rem;
+    color: #302f31;
+    border-radius: 5px;
+    width: 4rem;
+    text-align: center;
+    font-size: 0.7rem;
+    min-height: 1.3rem;
+    cursor: pointer;
+}
+.timeSelect option:hover {
+    background-color: #E34C4C;
+
+}
+.radioInput{
+    margin: 0 0.5rem;
+    font-size: 0.8rem;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    /* accent-color: #E34C4C; */
+}
+
+#input-file{
+    font-size: 0.7rem;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #D9D9D9;
+    color: #302f31;
+}
+
+/* ======== Lobby Page ========  */
+.mainContainer2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    /* border: 2px solid purple; */
+    background-color: #272528;
+    min-height: 100%;
+    padding: 2rem 2rem 2rem 2rem;
+  }
+  .topFrame{
+    background-color: #6e1899;
+
+  }
+  .leftFrame{
+    margin: 0.5rem 0 0.5rem 0;
+  background-color: #302f31;
+  padding: 0 1.5rem 1rem 1.5rem;
+  width: 40rem; /* 1280 px */
+  height: fit-content;
+  min-width: 40%;
+  width: 80%;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 20px;
+  }
+
+  .bgFrame2 {
+    margin: 0.5rem 0 0.5rem 0;
+    background-color: #302f31;
+    padding: 0 1.5rem 1rem 1.5rem;
+    width: 40rem; /* 1280 px */
+    height: fit-content;
+    min-width: 40%;
+    width: 80%;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 20px;
+  }

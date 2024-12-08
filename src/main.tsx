@@ -9,6 +9,9 @@ import Package from "./pages/Package.tsx";
 import App from "./App.tsx";
 import TopicDetail from "./pages/TopicDetail.tsx";
 import SelectLesson from "./pages/SelectLesson.tsx";
+import CreateRoom from "./pages/CreateRoom.tsx";
+import CreateTask from "./pages/CreateTask.tsx";
+import Lobby from "./pages/Lobby.tsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +41,18 @@ const router = createBrowserRouter([
   {
     path: "/select-lesson",
     element: <SelectLesson/>,
+  },
+  {
+    path: "/create-room",
+    element: <CreateRoom/>,
+  },
+  {
+    path: "/lobby-room",
+    element: <Lobby/>,
+  },
+  {
+    path: "/create-task",
+    element: <CreateTask/>,
   },
 ]);
 
