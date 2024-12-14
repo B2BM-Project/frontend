@@ -1,6 +1,6 @@
 import NavBar from '../components/NavBar.tsx'
 import TopicPage from '../components/TopicPage.tsx';
-import React, { useState } from "react";
+import { useState } from "react";
 import "./CreateRoom.css"
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -30,6 +30,7 @@ const handleSubmit = (e) => {
     alert("submitted Goto Lobby Page")
     // ส่งข้อมูลไปยัง backend หรือดำเนินการอื่น
 };
+
 return (
     <>
                 <NavBar onLoginClick={() => setLoginOpen(true)} />
@@ -73,7 +74,7 @@ return (
                                         <div className='togglePwd' onClick={() => setVisible(!visible)}>
                                             {visible ? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
                                         </div>
-                                        <input className='text-box' placeholder='Password'
+                                        <input className='text-box' placeholder='Password' maxLength={6}
                                         type={visible ? "text":"password"}
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
@@ -87,7 +88,7 @@ return (
                                             <div className='togglePwd'>
                                                 {visible2 ? <i onClick={() => setVisible2(!visible2)} className="fa-solid fa-eye"></i> : <i onClick={() => setVisible2(!visible2)} className="fa-solid fa-eye-slash"></i>}
                                             </div>
-                                            <input className='text-box' placeholder='Confirm Password'
+                                            <input className='text-box' placeholder='Confirm Password' maxLength={6}
                                             type={visible2 ? "text":"password"}
                                             value={confirmPassword}
                                             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -105,13 +106,6 @@ return (
                                     
                                 </div>
                 </form>
-                <i className="fa-solid fa-eye"></i>
-                <i className="fa-solid fa-eye-slash"></i>
-                <i className="fa-solid fa-floppy-disk"></i>
-                <i className="fa-solid fa-download fa-xs" style={{color: "#ffff"}}></i>
-                <i className="fa-solid fa-xmark"></i>
-                <i className="fa-solid fa-gear"></i>
-                <i className="fa-solid fa-right-from-bracket"></i>
             </div>
         </div>  
     </>
