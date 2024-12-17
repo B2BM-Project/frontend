@@ -1,0 +1,67 @@
+/* css ของหน้า Challenge, SelectLesson, SliderCard components */
+#card-container{
+    max-width: 350px;
+    max-height: 400px;
+    width: auto;
+    height: 90%;
+    opacity: 90%;
+    transition: transform 0.3s ease-in-out;
+}
+#card-container:hover{
+    transform: scale(0.97);
+}
+
+.card-img{
+    width: 350px;
+    max-width: 350px;
+    min-width: 320px;
+    /* width: 420px; */
+    height: 180px;
+}
+.card-body{
+    background-color: #ffffff;
+    opacity: 85%;
+    height: 130px;
+    display: block;
+    /* justify-content: flex-start; */
+    padding: 0rem 0.3rem 0.5rem 0.65rem;    ;
+    border-radius: 0 0 30px 30px;
+}
+
+#card-title{
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: black;
+    padding:0;
+    margin: 0;
+    gap: 0;
+}
+#card-description{
+    font-size: 0.58rem;
+    font-weight: 500;
+    color: black;
+    padding: 0 0 0 0;
+    word-wrap: break-word;
+}
+
+.slick-slide>div{
+    margin: 0 10px;
+}
+.slider-div>div{
+    display: flex;
+    justify-content: center; 
+}
+
+.category-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0.5rem;
+}
+.category-container>a{
+    font-size: 0.8rem;
+    color: #99C3FF;
+}
+.category-container>a:hover{
+    text-decoration: underline;
+}

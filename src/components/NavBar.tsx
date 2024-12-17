@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Loginpopup from '../components/Loginpopup.tsx';
 import "./NavBar.css";
 import '../App.css'
 import logo from '../assets/logo.png'
