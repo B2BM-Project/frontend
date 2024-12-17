@@ -1,9 +1,9 @@
 import NavBar from '../components/NavBar.tsx'
 import Loginpopup from '../components/Loginpopup.tsx';
-import Nav_profile from '../components/Nav_profile.jsx';
-import Main_profile from '../components/Main_profile.jsx';
-import Edit_profile from '../components/Edit_profile.jsx';
-import Score_board from '../components/Score_board.jsx';
+import Nav_profile from '../components/Nav_profile.tsx';
+import Main_profile from '../components/Main_profile.tsx';
+import Edit_profile from '../components/Edit_profile.tsx';
+import Score_board from '../components/Score_board.js';
 import { useState } from "react";
 
 function Profile () {
@@ -18,9 +18,9 @@ function Profile () {
 
             <div className="flex h-screen bg-gray-200 ">
             <Nav_profile />
-            {/* <Main_profile /> */}
-            {/* <Edit_profile /> */}
-            <Score_board />
+            <Main_profile />
+            {/* <Edit_profile />
+            <Score_board /> */}
             </div>
         </>
     );

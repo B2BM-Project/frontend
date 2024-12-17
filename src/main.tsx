@@ -8,7 +8,7 @@ import Competition from "./pages/Competition.tsx";
 import Package from "./pages/Package.tsx";
 import App from "./App.tsx";
 import TopicDetail from "./pages/TopicDetail.tsx";
-import Profile from "./pages/Profile.jsx"
+import Profile from "./pages/Profile.tsx"
 
 const router = createBrowserRouter([
   {
