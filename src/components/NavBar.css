@@ -2,10 +2,11 @@
 
 nav{
     background-color: #302F31;
-    padding: 1rem 3rem 1rem 1rem;
+    /* padding: 1rem 3rem 1rem 1rem; */
     border-bottom: 2px solid white;
     text-align: center;
-    height: 100px;
+    /* height: 100px; */
+    height: 15%;
     /* border: 2px solid red; */
     display: flex;
     justify-content: space-between;
