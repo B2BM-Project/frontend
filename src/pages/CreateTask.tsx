@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 function CreateTask() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [duration, setDuration] = useState("1");
   const [file, setFile] = useState("");
   const [link, setLink] = useState(""); 
   const navigate = useNavigate(); // ใช้ navigate เพื่อเปลี่ยนหน้า
@@ -31,9 +30,10 @@ function CreateTask() {
     axios.post('http://localhost:3000/upload', uploadData)
         .then((res) => {
             console.log("Upload successful:", res.data);
+            console.log("Upload successful 2:", uploadData);
             alert("Files uploaded successfully!");
             // Redirect to Lobby Page
-            navigate('/lobby-room');
+            // navigate('/lobby-room');
         })
         .catch((error) => {
             console.error("Error uploading files:", error);
@@ -46,7 +46,6 @@ function CreateTask() {
     const submitData = {
         title,
         description,
-        duration,
         file,
         link,
     };
@@ -62,7 +61,6 @@ function CreateTask() {
     // Reset state
     setTitle("");
     setDescription("");
-    setDuration("1");
     setFile("");
     setLink("");
     
@@ -86,29 +84,6 @@ return (
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               ></textarea>
-            </div>
-            {/* Duration select element */}
-            <div className='input-container2'>
-              <div className="select-input">
-                <label>Duration :</label>
-                <select className="timeSelect" defaultValue={duration} onChange={e => setDuration(e.target.value)}>
-                  <option value="1">1 Hour</option>
-                  <option value="2">2 Hours</option>
-                  <option value="3">3 Hours</option>
-                </select>
-              </div>
-              {/* select radio button */}
-              {/* <div className="type-container">
-                <label>Type :</label>
-                <label className="radioInput">
-                  <input className="radioInput" type="radio" id="vm" name="type_task" value="vm"/>
-                  VM
-                </label>
-                <label className="radioInput">
-                  <input className="radioInput" type="radio" id="file" name="type_task" value="file"/>
-                  Upload File
-                </label>
-              </div> */}
             </div>
             {/* Input IP Address */}
             <div className="input-container">

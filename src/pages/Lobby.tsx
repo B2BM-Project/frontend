@@ -21,10 +21,10 @@ function Lobby() {
             </Link>
           </div>
           {/* show user's attendance */}
-          <div className="leftFrame-profile overflow-auto">
+          <div className="leftFrame-profile overflow-auto max-h-40">
               <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
               name="John Wick" 
-              owner={true} 
+              owner={true} //Crown Icon
               ready={false}/>
               <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
               name="Liam miamy" 
@@ -38,6 +38,27 @@ function Lobby() {
               name="Luis Dan" 
               owner={false}
               ready={true} />
+              <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
+              name="Luis Dan" 
+              owner={false}
+              ready={true} />
+              <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
+              name="Luis Dan" 
+              owner={false}
+              ready={true} />
+              <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
+              name="Luis Dan" 
+              owner={false}
+              ready={true} />
+              <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
+              name="Luis Dan" 
+              owner={false}
+              ready={true} />
+              <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
+              name="Luis Dan" 
+              owner={false}
+              ready={true} />
+            
           </div>
           {/* show button ready, start */}
           <div className="lobby-btn">
@@ -88,13 +109,13 @@ function Lobby() {
           task_des="Room for hacking contest"
           task_ip="http://localhost:5173/lobby-room"
           task_file="Download File"
-          task_time="1"/>
+          />
           <Profile2 task_num={2}
           task_title="CTF Contest Challenge"
           task_des="Room for hacking contest"
           task_ip="http://localhost:5173/lobby-room"
           task_file="Download File"
-          task_time="3"/>
+          />
 
         </div>
       </div>

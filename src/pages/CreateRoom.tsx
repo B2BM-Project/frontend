@@ -7,6 +7,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 function CreateRoom() {
 const [title, setTitle] = useState("");
 const [description, setDescription] = useState("");
+const [duration, setDuration] = useState("1");
 const [usePassword, setUsePassword] = useState(false);
 const [password, setPassword] = useState("");
 const [confirmPassword, setConfirmPassword] = useState("");
@@ -24,11 +25,21 @@ const handleSubmit = (e) => {
     const formData = {
         title,
         description,
+        duration,
         password: usePassword ? password : null,
     };
     console.log("Form Data:", formData);
     alert("submitted Goto Lobby Page")
-    // ส่งข้อมูลไปยัง backend หรือดำเนินการอื่น
+    // ส่งข้อมูลไปยัง backend หรือดำเนินการอื่น เช่น reset form data
+    // setTitle("");
+    // setDescription("");
+    // setDuration("1");
+    // setUsePassword(false);
+    // setPassword("");
+    // setConfirmPassword("");
+    // setVisible(false);
+    // setVisible2(false);
+
 };
 
 return (
@@ -54,6 +65,17 @@ return (
                                     onChange={(e) => setDescription(e.target.value)}
                                     required
                                     ></textarea>
+                                </div>
+                                {/* Duration select element */}
+                                <div className='input-container2'>
+                                <div className="select-input">
+                                    <label>Duration :</label>
+                                    <select className="timeSelect" defaultValue={duration} onChange={e => setDuration(e.target.value)}>
+                                    <option value="1">1 Hour</option>
+                                    <option value="2">2 Hours</option>
+                                    <option value="3">3 Hours</option>
+                                    </select>
+                                </div>
                                 </div>
                                 {/* Password Check Box  */}
                                 <div className='input-container'>

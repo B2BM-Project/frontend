@@ -1,7 +1,7 @@
 import "../pages/CreateRoom.css"
 import TopicPage from '../components/TopicPage.tsx';
 
-function Profile2(props: {task_num: number;task_title: string; task_des: string; task_ip: string; task_file: string; task_time: string;}) {
+function Profile2(props: {task_num: number;task_title: string; task_des: string; task_ip: string; task_file: string;}) {
     return (
     <>
     <div className="bgFrame2">
@@ -12,7 +12,6 @@ function Profile2(props: {task_num: number;task_title: string; task_des: string;
             <p className="whitespace-pre-wrap text-base">Description      :      {props.task_des}</p>
             <p className="whitespace-pre-wrap text-base">IP Address        :      {props.task_ip}</p>
             <p className="whitespace-pre-wrap text-base">File                      :      {props.task_file}</p>
-            <p className="whitespace-pre-wrap text-base">Duration           :      {props.task_time} Hour</p>
         </div>
     </div>
     </>
