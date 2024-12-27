@@ -8,6 +8,9 @@ import Competition from "./pages/Competition.tsx";
 import Package from "./pages/Package.tsx";
 import App from "./App.tsx";
 import TopicDetail from "./pages/TopicDetail.tsx";
+import Profile from "./pages/Profile.tsx"
+import Score from "./pages/Score.tsx";
+import Editprofile from "./pages/Editprofile.tsx";
 import SelectLesson from "./pages/SelectLesson.tsx";
 import CreateRoom from "./pages/CreateRoom.tsx";
 import CreateTask from "./pages/CreateTask.tsx";
@@ -39,6 +42,10 @@ const router = createBrowserRouter([
     element: <TopicDetail/>,
   },
   {
+    path: "/profile",
+    element: <Profile/>,
+  },
+  {
     path: "/select-lesson",
     element: <SelectLesson/>,
   },
@@ -54,6 +61,14 @@ const router = createBrowserRouter([
     path: "/create-task",
     element: <CreateTask/>,
   },
+  {
+    path: "/score",
+    element: <Score/>,
+  },
+  {
+    path: "/editprofile",
+    element: <Editprofile/>,
+  }
 ]);
 
 createRoot(document.getElementById("root")!).render(
