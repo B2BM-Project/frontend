@@ -5,9 +5,19 @@ import { Link } from "react-router-dom";
 import Profile from "../components/Profile.tsx";
 import { useState } from "react";
 import Profile2 from "../components/Profile2.tsx";
+import Clock from "../components/Clock.tsx";
 
 function Lobby() {
   const [visible, setVisible] = useState(false);
+  const [startTime, setStartTime] = useState(false); // ใช้ state ควบคุมการเริ่มจับเวลา
+  const [DurationTime, setDurationTime] = useState(1); // ตั้งค่าเวลาเริ่มต้น (1 ชั่วโมง)
+
+  const handleStartTime = () => setStartTime(true); // เริ่มนับถอยหลัง
+  const handleStopTime = () => setStartTime(false); // หยุดการนับถอยหลัง
+  const handleResetTime = () => {
+    setStartTime(false); // หยุดการจับเวลา
+    setDurationTime(3600); // รีเซ็ตเวลาเป็นค่าเริ่มต้น
+  };
 
   return (
     <>
@@ -21,10 +31,10 @@ function Lobby() {
             </Link>
           </div>
           {/* show user's attendance */}
-          <div className="leftFrame-profile overflow-auto">
+          <div className="leftFrame-profile overflow-auto max-h-40">
               <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
               name="John Wick" 
-              owner={true} 
+              owner={true} //Crown Icon
               ready={false}/>
               <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
               name="Liam miamy" 
@@ -38,11 +48,32 @@ function Lobby() {
               name="Luis Dan" 
               owner={false}
               ready={true} />
+              <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
+              name="Luis Dan" 
+              owner={false}
+              ready={true} />
+              <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
+              name="Luis Dan" 
+              owner={false}
+              ready={true} />
+              <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
+              name="Luis Dan" 
+              owner={false}
+              ready={true} />
+              <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
+              name="Luis Dan" 
+              owner={false}
+              ready={true} />
+              <Profile img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
+              name="Luis Dan" 
+              owner={false}
+              ready={true} />
+            
           </div>
           {/* show button ready, start */}
           <div className="lobby-btn">
             <button className="btn-black">Ready</button>
-            <button className="btn-red">Start</button>
+            <button className="btn-red" onClick={handleStartTime}>Start</button>
           </div>
         </div>
       {/* Right Tab */}
@@ -83,18 +114,21 @@ function Lobby() {
             </div>
           </div> 
           {/* Content section */}
-          <Profile2 task_num={1}
+            <Clock initialTime={DurationTime} start={startTime} />
+          <Profile2 task_num="Task Details 1"
           task_title="CTF Contest Challenge"
           task_des="Room for hacking contest"
           task_ip="http://localhost:5173/lobby-room"
           task_file="Download File"
-          task_time="1"/>
-          <Profile2 task_num={2}
+          task_score="30"
+          />
+          <Profile2 task_num="Task Details 2"
           task_title="CTF Contest Challenge"
           task_des="Room for hacking contest"
           task_ip="http://localhost:5173/lobby-room"
           task_file="Download File"
-          task_time="3"/>
+          task_score="10"
+          />
 
         </div>
       </div>
