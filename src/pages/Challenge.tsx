@@ -21,7 +21,7 @@ function Challenge() {
       // ฟังก์ชันเพื่อดึงข้อมูล
       const fetchData = async () => {
           try {
-              const response = await axios.get("http://127.0.0.1:3000/card");
+              const response = await axios.get(`${import.meta.env.VITE_API_URL}/card`);
               setData(response.data);
               // const response1 = await axios.get("http://127.0.0.1:3000/card/beginner");
               // setDataBeginner(response1.dataBeginner);
