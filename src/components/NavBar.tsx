@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import './NavBar.css';
-import '../App.css';
-import logo from '../assets/logo.png';
+import Loginpopup from '../components/Loginpopup.tsx';
+import "./NavBar.css";
+import '../App.css'
+import logo from '../assets/logo.png'
 
 function NavBar({ onLoginClick, onLogout, username }: { onLoginClick: any, onLogout: any, username: string | null }) {
     return (
