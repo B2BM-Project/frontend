@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function Loginpopup({ isOpen, onClose }: { isOpen: any, onClose: any }) {
+function Loginpopup({ isOpen, onClose, onLoginSuccess }: { isOpen: any, onClose: any, onLoginSuccess: any }) {
     const [isSignupOpen, setSignupOpen] = useState(false);
     const [formData, setFormData] = useState({
         username: "",
@@ -41,6 +41,9 @@ function Loginpopup({ isOpen, onClose }: { isOpen: any, onClose: any }) {
             alert(`${type} successful!`);
             if (type === "login") {
                 localStorage.setItem("token", result.token);
+
+                // Call onLoginSuccess with username and token after login
+                onLoginSuccess(formData.username, result.token);
             }
         } else {
             alert(result.message || `${type} failed`);

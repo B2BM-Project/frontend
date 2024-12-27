@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 function Main_profile() {
     return (
@@ -32,7 +33,7 @@ function Main_profile() {
                     <p className="text-[24px] font-bold">Ranking Level: <span className="text-blue-500 text-[24px] font-bold">999+</span></p>
                     <p className="text-[24px]">Completed Total Challenge:{" "}<span className="text-[24px]">20</span></p>
                     {/* Edit Profile Button */}
-                    <button className="mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg"> Edit Profile</button>
+                    <Link to="/editprofile" className="btn btn-xs mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg p-4"> Edit Profile</Link>
                 </div>
                 </div>
             </main>
