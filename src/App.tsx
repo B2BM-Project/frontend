@@ -1,44 +1,51 @@
-import NavBar from './components/NavBar.tsx'
-import Loginpopup from './components/Loginpopup.tsx';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import NavBar from "./components/NavBar";
+import Loginpopup from "./components/Loginpopup";
+import Mainpage from "./components/mainpage"
 
 function App() {
+    const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
+    const [username, setUsername] = useState<string | null>(null);
+    const [token, setToken] = useState<string | null>(null);
 
-  const [isLoginOpen, setLoginOpen] = useState(false);
+    // ตรวจสอบ JWT token ใน localStorage เมื่อ component โหลด
+    useEffect(() => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            setToken(storedToken);
 
-  return (
-    <>
-        <div className='data-theme="mytheme"'>
-        <NavBar onLoginClick={() => setLoginOpen(true)} />
-        <Loginpopup isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} />
-        
+            // Decoding token (ถ้าคุณต้องการดึงข้อมูล user ออกมา)
+            const decoded: any = JSON.parse(atob(storedToken.split('.')[1])); // Decode JWT token
+            setUsername(decoded.username);
+        }
+    }, []);
 
-        <div className="mainContainer">
-            <div className="bgFrame">
-              <div className='text-center text-[#F03535] text-[96px] font-bold bg-[#302F31]'>
-                Achieve mastery <br />
-                through challenge
-              </div>
-              <div className='text-[64px] font-bold text-[#fffff] bg-[#302F31] text-center'>
-                Improve your skills
-              </div>
-              <div className="flex justify-center mt-10">
-                <button className="btn btn-outline btn-error">Click to Learn</button>
-              </div>
-              <div className='border-4 border-solid border-black rounded-[15px] p-10 mt-[90px] bg-[#E34C4C] flex'>
-                <div className='w-1/2 bg-[#E34C4C]'>
-                  test
-                </div>
-                <div className='w-1/2 bg-[#E34C4C]'>
-                  test
-                </div>
-              </div>
-            </div>
+    const handleLoginSuccess = (username: string, token: string) => {
+        setUsername(username);
+        setToken(token);
+        localStorage.setItem("token", token); // เก็บ token ใน localStorage
+        setLoginPopupOpen(false); // ปิด popup เมื่อ login สำเร็จ
+    };
+
+    const handleLogout = () => {
+        setUsername(null);
+        setToken(null);
+        localStorage.removeItem("token"); // ลบ token ออกจาก localStorage
+    };
+
+    return (
+        <>
+        <div>
+            {/* ส่งข้อมูลชื่อผู้ใช้, ฟังก์ชันเปิด login popup และฟังก์ชัน logout */}
+            <NavBar username={username} onLoginClick={() => setLoginPopupOpen(true)} onLogout={handleLogout} />
+            {/* ส่งฟังก์ชัน handleLoginSuccess ไปยัง popup */}
+            <Loginpopup isOpen={isLoginPopupOpen} onClose={() => setLoginPopupOpen(false)} onLoginSuccess={handleLoginSuccess} />
+            
         </div>
-        </div> 
-    </>
-  )
+
+        <Mainpage />
+        </>
+    );
 }
 
-export default App
-
+export default App;

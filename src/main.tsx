@@ -9,6 +9,8 @@ import Package from "./pages/Package.tsx";
 import App from "./App.tsx";
 import TopicDetail from "./pages/TopicDetail.tsx";
 import Profile from "./pages/Profile.tsx"
+import Score from "./pages/Score.tsx";
+import Editprofile from "./pages/Editprofile.tsx";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
     path: "/profile",
     element: <Profile/>,
   },
+  {
+    path: "/score",
+    element: <Score/>,
+  },
+  {
+    path: "/editprofile",
+    element: <Editprofile/>,
+  }
 ]);
 
 createRoot(document.getElementById("root")!).render(

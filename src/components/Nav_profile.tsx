@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 function Nav_profile() {
     return (
@@ -17,19 +18,11 @@ function Nav_profile() {
                     {/* Sidebar Menu */}
                     <div className="mt-8">
                         <div>
-                            <a
-                                href="#"
-                                className="py-2 px-4 text-lg bg-[#D9D9D9] rounded-md mb-8 hover:bg-gray-600 w-full">
-                                    Account
-                            </a>
+                            <Link to="/profile" className="py-2 px-4 text-lg bg-[#D9D9D9] rounded-md mb-8 hover:bg-gray-600 w-full"> Account </Link>
                         </div>
                         <br />
                         <div>
-                        <a
-                            href="#"
-                            className="py-2 px-4 text-lg hover:bg-gray-700 rounded-md">
-                                Score Board
-                        </a>
+                            <Link to="/score" className="py-2 px-4 text-lg hover:bg-gray-700 rounded-md"> Score Board </Link>
                         </div>
                     </div>
                     </div>

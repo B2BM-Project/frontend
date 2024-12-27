@@ -1,13 +1,12 @@
 import NavBar from '../components/NavBar.tsx'
 import Loginpopup from '../components/Loginpopup.tsx';
 import Nav_profile from '../components/Nav_profile.tsx';
-import Main_profile from '../components/Main_profile.tsx';
+import Score_board from '../components/Score_board.tsx';
 import { useState } from "react";
 
-function Profile () {
+function Score () {
 
     const [isLoginOpen, setLoginOpen] = useState(false);
-    
 
     return (
         <>
@@ -17,11 +16,10 @@ function Profile () {
 
             <div className="flex h-screen bg-gray-200 ">
             <Nav_profile />
-            <Main_profile />
-            
+            <Score_board /> 
             </div>
         </>
     );
 };
 
-export default Profile;
+export default Score;
