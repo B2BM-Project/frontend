@@ -68,14 +68,14 @@ return (
                                 </div>
                                 {/* Duration select element */}
                                 <div className='input-container2'>
-                                <div className="select-input">
-                                    <label>Duration :</label>
-                                    <select className="timeSelect" defaultValue={duration} onChange={e => setDuration(e.target.value)}>
-                                    <option value="1">1 Hour</option>
-                                    <option value="2">2 Hours</option>
-                                    <option value="3">3 Hours</option>
-                                    </select>
-                                </div>
+                                    <div className="select-input">
+                                        <label>Duration :</label>
+                                        <select className="timeSelect" defaultValue={duration} onChange={e => setDuration(e.target.value)}>
+                                        <option value="1">1 Hour</option>
+                                        <option value="2">2 Hours</option>
+                                        <option value="3">3 Hours</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 {/* Password Check Box  */}
                                 <div className='input-container'>

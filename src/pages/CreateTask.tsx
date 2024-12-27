@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 function CreateTask() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [flag, setFlag] = useState("");
+  const [score, setScore] = useState("10");
   const [file, setFile] = useState("");
   const [link, setLink] = useState(""); 
   const navigate = useNavigate(); // ใช้ navigate เพื่อเปลี่ยนหน้า
@@ -46,6 +48,8 @@ function CreateTask() {
     const submitData = {
         title,
         description,
+        flag,
+        score,
         file,
         link,
     };
@@ -84,6 +88,22 @@ return (
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               ></textarea>
+            </div>
+            {/* Flag Answer */}
+            <div className="input-container">
+              <label>Flag Answer</label>
+              <input className='text-box' type="text" placeholder='fL4G 4n5WeR' value={flag} onChange={(e) => setFlag(e.target.value)} />
+            </div>
+            {/* Task Score */}
+            <div className='input-container'>
+                <div className="select-input">
+                    <label>Task Score</label>
+                    <select className="timeSelect" defaultValue={score} onChange={e => setScore(e.target.value)}>
+                    <option value="10">10 Points</option>
+                    <option value="20">20 Points</option>
+                    <option value="30">30 Points</option>
+                    </select>
+                </div>
             </div>
             {/* Input IP Address */}
             <div className="input-container">

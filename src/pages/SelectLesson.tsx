@@ -14,7 +14,7 @@ function SelectLesson() {
         // ฟังก์ชันเพื่อดึงข้อมูล
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://127.0.0.1:5100/card");
+                const response = await axios.get("http://127.0.0.1:3000/card");
                 setData(response.data);
             } catch (err) {
                 setError(err.message);

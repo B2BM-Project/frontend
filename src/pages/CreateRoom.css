@@ -35,12 +35,12 @@
     
 }
 .btn-red{
-    border: 3px solid #E34C4C;
+    border: 3px solid #278933;
     border-radius: 15px;    
     padding: 5px 15px;
     margin: 0 0.5rem;
     font-size: 0.9rem;
-    background-color: #E34C4C;
+    background-color: #278933;
     min-width: 146px;
 }
 .btn-red:hover{
@@ -249,7 +249,7 @@ button i {
 
 /* Content Section */
 .bgFrame2 {
-    margin: 2rem 0 1rem 0;
+    margin: 1rem 0 1rem 0;
     background-color: #302f31;
     padding: 0 1.5rem 1rem 1.5rem;
     width: 40rem; /* 1280 px */

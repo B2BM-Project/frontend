@@ -21,15 +21,15 @@ function Challenge() {
       // ฟังก์ชันเพื่อดึงข้อมูล
       const fetchData = async () => {
           try {
-              const response = await axios.get("http://127.0.0.1:5100/card");
+              const response = await axios.get("http://127.0.0.1:3000/card");
               setData(response.data);
-              // const response1 = await axios.get("http://127.0.0.1:5100/card/beginner");
+              // const response1 = await axios.get("http://127.0.0.1:3000/card/beginner");
               // setDataBeginner(response1.dataBeginner);
-              // const response2 = await axios.get("http://127.0.0.1:5100/card/web");
+              // const response2 = await axios.get("http://127.0.0.1:3000/card/web");
               // setDataWeb(response2.dataWeb);
-              // const response3 = await axios.get("http://127.0.0.1:5100/card/pwn");
+              // const response3 = await axios.get("http://127.0.0.1:3000/card/pwn");
               // setDataPwn(response3.dataPwn);
-              // const response4 = await axios.get("http://127.0.0.1:5100/card/crypto");
+              // const response4 = await axios.get("http://127.0.0.1:3000/card/crypto");
               // setDataCrypto(response4.dataCrypto);
           } catch (err) {
               setError(err.message);
