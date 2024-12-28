@@ -19,7 +19,7 @@ function Loginpopup({ isOpen, onClose, onLoginSuccess }: { isOpen: any, onClose:
     };
 
     async function handleFormSubmit(type: string) {
-        const url = type === "login" ? "http://localhost:5100/login" : "http://localhost:5100/register";
+        const url = type === "login" ? `${import.meta.env.VITE_API_URL}/login` : `${import.meta.env.VITE_API_URL}/register`;
         const data =
             type === "login"
                 ? { username: formData.username, password: formData.password }

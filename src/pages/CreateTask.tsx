@@ -29,7 +29,7 @@ function CreateTask() {
     for (let i = 0; i < file.length; i++) {
       uploadData.append(`multiFile`, file[i]);
     }
-    axios.post('http://localhost:3000/upload', uploadData)
+    axios.post(`${import.meta.env.VITE_API_URL}/upload`, uploadData)
         .then((res) => {
             console.log("Upload successful:", res.data);
             console.log("Upload successful 2:", uploadData);
@@ -67,6 +67,8 @@ function CreateTask() {
     setDescription("");
     setFile("");
     setLink("");
+    setScore("10");
+    setFlag("")
     
 };
 return (
