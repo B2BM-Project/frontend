@@ -1,18 +1,13 @@
 import TopicPage from '../components/TopicPage'
 import './Learn.css'
-import NavBar from '../components/NavBar.tsx'
-import Loginpopup from '../components/Loginpopup.tsx';
-import { useState } from "react";
+import Login_Comp from "../components/Login_Comp";
 
 function Learn() {
-
-  const [isLoginOpen, setLoginOpen] = useState(false);
-
   return (
     <div>
-      <NavBar onLoginClick={() => setLoginOpen(true)} />
-      <Loginpopup isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} />
-
+      
+       <Login_Comp/>
+      
         <div className="mainContainer">
             <div className="bgFrame">
             <TopicPage page="OWASP Top 10" /> 

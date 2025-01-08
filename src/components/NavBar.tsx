@@ -4,7 +4,7 @@ import "./NavBar.css";
 import '../App.css'
 import logo from '../assets/logo.png'
 
-function NavBar({ onLoginClick, onLogout, username }: { onLoginClick: any, onLogout: any, username: string | null }) {
+function NavBar({ avatar, onLoginClick, onLogout }: { avatar: string | null; onLoginClick: () => void; onLogout: () => void }) {
     return (
         <nav>
             <Link to='/'>
@@ -19,19 +19,28 @@ function NavBar({ onLoginClick, onLogout, username }: { onLoginClick: any, onLog
                 <Link to="/package">Package</Link>
             </div>
             <div className="nav-right">
-                {username ? (
-                    <>
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-xs m-1">Click</div>
-                            <ul tabIndex={0} className="dropdown-content menu bg-[#000] rounded-box z-[1] w-52 p-2 shadow">
-                                <li><Link to="/profile" className="username">{username}</Link></li>
-                                <li><a className="navButton" onClick={onLogout}>Logout</a></li>
-                            </ul>
-                        </div>
-                    </>
-                ) : (
-                    <button className="navButton" onClick={onLoginClick}>Login</button>
-                )}
+                
+                    {avatar ? (
+                        <>
+                            <div className="dropdown">
+                                <div className="flex items-center gap-4">
+                                    <div className="avatar">
+                                        <div className="w-8 rounded-full">
+                                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                                    <li><a>Item 1</a></li>
+                                    <li><a>Item 2</a></li>
+                                </ul>
+                            </div>
+            
+                        </>
+                    ) : (
+                        <button className="navButton" onClick={onLoginClick}>Login</button>
+                    )}
+                
             </div>
         </nav>
     );
