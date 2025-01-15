@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import NavBar from '../components/NavBar.tsx'
-import Loginpopup from '../components/Loginpopup.tsx';
 import TopicPage from '../components/TopicPage'
 import SliderCard from '../components/SliderCard'
 import "./Challenge.css"
 import { useState, useEffect } from 'react';
 import axios from "axios";
+import Login_Comp from "../components/Login_Comp";
 
 function Challenge() {
   const [isLoginOpen, setLoginOpen] = useState(false);
@@ -45,8 +44,7 @@ function Challenge() {
 
   return (
     <>
-        <NavBar onLoginClick={() => setLoginOpen(true)} />
-        <Loginpopup isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} />
+        <Login_Comp/>
 
         <div className="mainContainer">
             <div className="bgFrame">

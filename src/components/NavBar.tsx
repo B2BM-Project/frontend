@@ -1,10 +1,22 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Loginpopup from '../components/Loginpopup.tsx';
 import "./NavBar.css";
 import '../App.css'
 import logo from '../assets/logo.png'
 
-function NavBar({ onLoginClick, onLogout, username }: { onLoginClick: any, onLogout: any, username: string | null }) {
+function NavBar({ avatar, onLoginClick, onLogout }: { avatar: string | null; onLoginClick: () => void; onLogout: () => void }) {
+
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+    const handleToggleDropdown = () => {
+        setDropdownOpen(!isDropdownOpen); 
+    };
+
+    const handleCloseDropdown = () => {
+        setDropdownOpen(false); 
+    };
+
     return (
         <nav>
             <Link to='/'>
@@ -19,19 +31,41 @@ function NavBar({ onLoginClick, onLogout, username }: { onLoginClick: any, onLog
                 <Link to="/package">Package</Link>
             </div>
             <div className="nav-right">
-                {username ? (
+                {avatar ? (
                     <>
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-xs m-1">Click</div>
-                            <ul tabIndex={0} className="dropdown-content menu bg-[#000] rounded-box z-[1] w-52 p-2 shadow">
-                                <li><Link to="/profile" className="username">{username}</Link></li>
-                                <li><a className="navButton" onClick={onLogout}>Logout</a></li>
-                            </ul>
-                        </div>
+                        <div className="relative">
+                            {/* Avatar */}
+                            <div className="avatar cursor-pointer" onClick={handleToggleDropdown}>
+                                <div className="w-8 rounded-full">
+                                    <img
+                                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                                        alt="User Avatar"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Dropdown Menu */}
+                            {isDropdownOpen && (
+                                <ul className="absolute right-0 mt-2 dropdown-content menu bg-[#000] rounded-box z-10 w-52 p-2 shadow">
+                                    <li>
+                                        <a href="#">Profile</a>
+                                    </li>
+                                    <li>
+                                        <button className="navButton" onClick={onLogout}>Logout</button>
+                                    </li>
+                                </ul>
+                            )}
+
+                            {/* Overlay เพื่อปิด dropdown เมื่อคลิกข้างนอก */}
+                            {isDropdownOpen && (
+                                <div className="fixed inset-0 z-0" onClick={handleCloseDropdown}></div>
+                            )}
+                    </div>
                     </>
-                ) : (
-                    <button className="navButton" onClick={onLoginClick}>Login</button>
-                )}
+                    ) : (
+                        <button className="navButton" onClick={onLoginClick}>Login</button>
+                    )}
+                
             </div>
         </nav>
     );

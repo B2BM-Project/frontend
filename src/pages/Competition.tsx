@@ -1,10 +1,10 @@
-import NavBar from '../components/NavBar'
+import Login_Comp from "../components/Login_Comp";
 import TopicPage from '../components/TopicPage'
 
 function Competition() {
   return (
     <>
-      <NavBar/>
+      <Login_Comp/>
       <div className='mainContainer'>
         <div className="bgFrame">
           <TopicPage page="Competition" />
