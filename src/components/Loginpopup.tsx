@@ -40,7 +40,7 @@ function Loginpopup({ isOpen, onClose, onLoginSuccess }: { isOpen: any, onClose:
         if (response.ok) {
             alert(`${type} successful!`);
             if (type === "login") {
-                localStorage.setItem("token", result.token);
+                localStorage.setItem("authToken", result.token);
 
                 // Call onLoginSuccess with username and token after login
                 onLoginSuccess(formData.username, result.token);

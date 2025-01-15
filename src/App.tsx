@@ -10,7 +10,7 @@ function App() {
 
     // ตรวจสอบ JWT token ใน localStorage เมื่อ component โหลด
     useEffect(() => {
-        const storedToken = localStorage.getItem("token");
+        const storedToken = localStorage.getItem("authToken");
         if (storedToken) {
             setToken(storedToken);
 
@@ -23,14 +23,14 @@ function App() {
     const handleLoginSuccess = (username: string, token: string) => {
         setUsername(username);
         setToken(token);
-        localStorage.setItem("token", token); // เก็บ token ใน localStorage
+        localStorage.setItem("authToken", token); // เก็บ token ใน localStorage
         setLoginPopupOpen(false); // ปิด popup เมื่อ login สำเร็จ
     };
 
     const handleLogout = () => {
         setUsername(null);
         setToken(null);
-        localStorage.removeItem("token"); // ลบ token ออกจาก localStorage
+        localStorage.removeItem("authToken"); // ลบ token ออกจาก localStorage
     };
 
     return (
