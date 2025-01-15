@@ -19,7 +19,7 @@ function Loginpopup({ isOpen, onClose, onLoginSuccess }: { isOpen: any, onClose:
     };
 
     async function handleFormSubmit(type: string) {
-        const url = type === "login" ? `${import.meta.env.VITE_API_URL}/login` : `${import.meta.env.VITE_API_URL}/register`;
+        const url = type === "login" ? `${import.meta.env.VITE_API_URL}/login` : `${import.meta.env.VITE_API_URL}/signup`;
         const data =
             type === "login"
                 ? { username: formData.username, password: formData.password }
@@ -40,7 +40,7 @@ function Loginpopup({ isOpen, onClose, onLoginSuccess }: { isOpen: any, onClose:
         if (response.ok) {
             alert(`${type} successful!`);
             if (type === "login") {
-                localStorage.setItem("token", result.token);
+                localStorage.setItem("authToken", result.token);
 
                 // Call onLoginSuccess with username and token after login
                 onLoginSuccess(formData.username, result.token);

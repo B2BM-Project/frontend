@@ -5,28 +5,29 @@ import Loginpopup from "./Loginpopup";
 function Login_Comp() {
     const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
     const [avatar, setAvatar] = useState<string | null>(null);
-    const [token, setToken] = useState<string | null>(null);
+    const [authToken, setAuthToken] = useState<string | null>(null);
 
     useEffect(() => {
-        const storedToken = localStorage.getItem("token");
+        const storedToken = localStorage.getItem("authToken");
         if (storedToken) {
-            setToken(storedToken);
+            setAuthToken(storedToken);
             const decoded: any = JSON.parse(atob(storedToken.split('.')[1]));
             setAvatar(decoded.avatar);
         }
     }, []);
 
-    const handleLoginSuccess = (avatar: string, token: string) => {
+    const handleLoginSuccess = (avatar: string, authToken: string) => {
         setAvatar(avatar);
-        setToken(token);
-        localStorage.setItem("token", token);
+        setAuthToken(authToken);
+        localStorage.setItem("authToken", authToken);
         setLoginPopupOpen(false);
     };
 
     const handleLogout = () => {
+        console.log("Logging out...");
         setAvatar(null);
-        setToken(null);
-        localStorage.removeItem("token");
+        setAuthToken(null);
+        localStorage.removeItem("authToken");
     };
 
     return (
