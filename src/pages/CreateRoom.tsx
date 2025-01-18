@@ -12,7 +12,7 @@ function CreateRoom() {
   // form data
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [duration, setDuration] = useState("1");
+  const [duration, setDuration] = useState("");
   const [usePassword, setUsePassword] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -134,9 +134,12 @@ function CreateRoom() {
                   defaultValue={duration}
                   onChange={(e) => setDuration(e.target.value)}
                 >
-                  <option value="1">1 Hour</option>
-                  <option value="2">2 Hours</option>
-                  <option value="3">3 Hours</option>
+                  <option value="1800">30 Minutes</option>
+                  <option value="3600">1 Hour</option>
+                  <option value="5400">1 Hour 30 Minutes</option>
+                  <option value="7200">2 Hours</option>
+                  <option value="9000">2 Hour 30 Minutes</option>
+                  <option value="10800">3 Hours</option>
                 </select>
               </div>
             </div>

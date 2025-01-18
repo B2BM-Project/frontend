@@ -84,11 +84,11 @@ const router = createBrowserRouter([
     element: <Editprofile/>,
     //errorElement: <ErrorBoundary error={null} />,
   },
-  {
-    path: "/testjoinroom",
-    element: <JoinRoom/>,
-    //errorElement: <ErrorBoundary error={null} />,
-  },
+  // {
+  //   path: "/testjoinroom",
+  //   element: <JoinRoom/>,
+  //   //errorElement: <ErrorBoundary error={null} />,
+  // },
 ]);
 
 createRoot(document.getElementById("root")!).render(
