@@ -199,7 +199,7 @@ button i {
 }
 #room-name{
     white-space: nowrap; 
-    width: 9rem; 
+    max-width: 9rem; 
     overflow: hidden;
     text-overflow: ellipsis; 
 }
