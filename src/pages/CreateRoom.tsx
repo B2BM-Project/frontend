@@ -3,6 +3,7 @@ import TopicPage from '../components/TopicPage.tsx';
 import { useState } from "react";
 import "./CreateRoom.css"
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { Link } from "react-router-dom";
 
 function CreateRoom() {
 const [title, setTitle] = useState("");
@@ -123,7 +124,7 @@ return (
                                 {error && <p style={{ color: "red"}}>{error}</p>}
                                 {/* Create/Cancel Button  */}
                                 <div className="button-container">
-                                    <button className="btn-black" type="button"><i className="fa-solid fa-xmark"></i>Cancel</button>
+                                    <Link to="/competition" className="btn-black" type="button"><i className="fa-solid fa-xmark"></i>Cancel</Link>
                                     <button className="btn-red" type="submit"><i className="fa-solid fa-floppy-disk"></i> Create</button>
                                     
                                 </div>

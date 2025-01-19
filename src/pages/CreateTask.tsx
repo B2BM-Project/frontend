@@ -5,6 +5,7 @@ import "./CreateRoom.css"
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function CreateTask() {
   const [title, setTitle] = useState("");
@@ -124,7 +125,7 @@ return (
             
             {/* Submit Button */}
             <div className="button-container">
-            <button className="btn-black" type="button"><i className="fa-solid fa-xmark"></i>Cancel</button>
+            <Link  to="/competition" className="btn-black" type="button"><i className="fa-solid fa-xmark"></i>Cancel</Link>
             <button className="btn-red" type="submit"><i className="fa-solid fa-floppy-disk"></i> Save</button>
             </div>  
           </form>
