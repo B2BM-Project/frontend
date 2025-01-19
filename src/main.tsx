@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { AuthProvider } from './context/AuthContext';
 import Learn from "./pages/Learn.tsx";
 import Challenge from "./pages/Challenge.tsx";
 import Competition from "./pages/Competition.tsx";
@@ -73,6 +74,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider> {/* ห่อหุ้ม RouterProvider ด้วย AuthProvider */}
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );

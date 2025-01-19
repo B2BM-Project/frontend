@@ -1,4 +1,3 @@
-
 function mainpage() {
     return (
         <div className='data-theme="mytheme"'>
