@@ -1,33 +1,26 @@
 import { useState, useEffect } from "react";
+import { useAuth } from '../context/AuthContext';
 import NavBar from "./NavBar";
 import Loginpopup from "./Loginpopup";
 
+
 function Login_Comp() {
+    const { authToken, avatar, setAuthToken, setAvatar, setIsLoggedIn } = useAuth();
     const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
-    const [avatar, setAvatar] = useState<string | null>(null);
-    const [authToken, setAuthToken] = useState<string | null>(null);
-
-    useEffect(() => {
-        const storedToken = localStorage.getItem("authToken");
-        if (storedToken) {
-            setAuthToken(storedToken);
-            const decoded: any = JSON.parse(atob(storedToken.split('.')[1]));
-            setAvatar(decoded.avatar);
-        }
-    }, []);
-
+  
     const handleLoginSuccess = (avatar: string, authToken: string) => {
-        setAvatar(avatar);
-        setAuthToken(authToken);
-        localStorage.setItem("authToken", authToken);
-        setLoginPopupOpen(false);
+      setAvatar(avatar);
+      setAuthToken(authToken);
+      setIsLoggedIn(true); // เมื่อทำการล็อกอินให้ตั้งสถานะว่า logged in
+      localStorage.setItem('authToken', authToken); // เก็บ authToken ใน localStorage
+      setLoginPopupOpen(false);
     };
-
+  
     const handleLogout = () => {
-        console.log("Logging out...");
-        setAvatar(null);
-        setAuthToken(null);
-        localStorage.removeItem("authToken");
+      setAvatar(null);
+      setAuthToken(null);
+      setIsLoggedIn(false); // เมื่อทำการล็อกเอาท์ให้ตั้งสถานะว่าไม่ได้ล็อกอิน
+      localStorage.removeItem('authToken');
     };
 
     return (

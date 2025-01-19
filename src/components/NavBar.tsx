@@ -1,20 +1,22 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Loginpopup from '../components/Loginpopup.tsx';
 import "./NavBar.css";
 import '../App.css'
 import logo from '../assets/logo.png'
+import { useAuth } from '../context/AuthContext';
 
-function NavBar({ avatar, onLoginClick, onLogout }: { avatar: string | null; onLoginClick: () => void; onLogout: () => void }) {
 
+function NavBar({ onLoginClick, onLogout }: { onLoginClick: () => void; onLogout: () => void }) {
+    const { avatar, isLoggedIn } = useAuth(); // ใช้ useAuth เพื่อเข้าถึงข้อมูล
+  
     const [isDropdownOpen, setDropdownOpen] = useState(false);
-
+  
     const handleToggleDropdown = () => {
-        setDropdownOpen(!isDropdownOpen); 
+      setDropdownOpen(!isDropdownOpen);
     };
-
+  
     const handleCloseDropdown = () => {
-        setDropdownOpen(false); 
+      setDropdownOpen(false);
     };
 
     return (
@@ -31,7 +33,7 @@ function NavBar({ avatar, onLoginClick, onLogout }: { avatar: string | null; onL
                 <Link to="/package">Package</Link>
             </div>
             <div className="nav-right">
-                {avatar ? (
+                {isLoggedIn   ? (
                     <>
                         <div className="relative">
                             {/* Avatar */}
