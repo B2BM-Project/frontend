@@ -19,37 +19,47 @@ function Lobby() {
   const [task, setTask] = useState([]); //Array for map function
   const [user, setUser] = useState(""); //user ที่ล็อคอิน ดึง token localStorage
   const [userInRoom, setUserInRoom] = useState([]); //user ที่ล็อคอิน ดึง token localStorage
+  const [isReady, setIsReady] = useState(false); // สถานะ Ready หรือ Unready
   const [error, setError] = useState(null);
   // Handle Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
   useEffect(() => {
        // ฟัง event เมื่อผู้ใช้งานคนอื่นเข้าร่วมห้อง
     socket.on("user_joined", (data) => {
       // setUserInRoom([]);
-      setUserInRoom(data.userId)
-      console.log(`${data.userId} joined room ${data.room}`);
+      setUserInRoom(data.user)
+      console.log(`${data.user} joined room ${data.room}`);
     });
-    // return () => {
-    //   socket.disconnect(); // ปิดการเชื่อมต่อเมื่อ component ถูก unmount
-    // };
+    // ฟัง event เมื่อสถานะของผู้ใช้งานเปลี่ยน
+    socket.on("update_ready_status", ({ user, status }) => {
+      console.log(`User ${user.user_id} is now ${status ? "Ready" : "Unready"}`);
+    });
   }, []);
-
-  
 
   // เข้าร่วมห้อง
   const joinRoom = () => {
     if (room !== "") {
-      socket.emit("join_room", room.Room_id, user.user_id);
+      socket.emit("join_room", room.Room_id, user);
     }
     closeModal();
   };
   const exitRoom = () => {
     if (room !== "") {
-      socket.emit("leave_room", room.Room_id, user.user_id);
+      socket.emit("leave_room", room.Room_id, user);
     }
     alert("exit");
+  };
+  // เปลี่ยนสถานะ Ready หรือ Unready
+  const toggleReadyStatus = () => {
+    setIsReady(!isReady);
+    socket.emit("set_ready_status", {
+      roomId : room.Room_id,
+      user: user,
+      status: !isReady,
+    });
   };
 
   useEffect(() => {
@@ -122,19 +132,19 @@ function Lobby() {
           </div>
           {/* show user's attendance */}
           <div className="leftFrame-profile overflow-auto max-h-40">
-            {userInRoom.map((data, index) => (
+            {userInRoom.map((data) => (
               <Profile
-                key={index}
+                key={data.user_id}
                 img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                name={data}
-                owner={room.owner == data ? true : false} //isTrue = Crown Icon
-                ready={false}
+                name={data.username}
+                owner={room.owner == data.user_id ? true : false} //isTrue = Crown Icon
+                ready={isReady}
               />
             ))}
           </div>
           {/* show button ready, start */}
           <div className="lobby-btn">
-            <button className="btn-black" onClick={joinRoom}>
+            <button className="btn-black" onClick={toggleReadyStatus}>
               Ready
             </button>
             <button className="btn-red" onClick={handleStartTime}>

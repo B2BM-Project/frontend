@@ -24,8 +24,8 @@ function Task(props: {task_num: string;task_title: string; task_des: string; tas
             {props.task_file.length > 1 &&    
                 props.task_file.map((file, index) => {
                     return(
-                        index == 0 ? <p className="whitespace-pre-wrap text-base">File                      :      {file}</p>
-                        : <p className="whitespace-pre-wrap text-base">                              :      {file}</p> 
+                        index == 0 ? <p key={index} className="whitespace-pre-wrap text-base">File                      :      {file}</p>
+                        : <p key={index} className="whitespace-pre-wrap text-base">                              :      {file}</p> 
                     )})
             } 
         </div>

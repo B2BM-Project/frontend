@@ -123,7 +123,7 @@ export const WelcomeRoomModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose,
         <p className="py-4 text-center text-xxl">{message}</p>
         <div className="modal-action justify-center	">
           <button className="h-9 w-4/5	border-solid border-2 border-indigo-800 rounded-md bg-indigo-800 hover:bg-blue-800" onClick={onConfirm}>
-            Confirm
+            Let's go
           </button>
         </div>
       </div>
