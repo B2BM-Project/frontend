@@ -16,7 +16,6 @@ import CreateRoom from "./pages/CreateRoom.tsx";
 import CreateTask from "./pages/CreateTask.tsx";
 import Lobby from "./pages/Lobby.tsx";
 import ErrorBoundary from "./components/ErrorBoundary.tsx";
-import JoinRoom from "./JoinRoom.tsx"
 import { AuthProvider } from './context/AuthContext';
 
 const router = createBrowserRouter([
@@ -85,12 +84,7 @@ const router = createBrowserRouter([
     element: <Editprofile/>,
     //errorElement: <ErrorBoundary error={null} />,
   },
-  {
-    path: "/testjoinroom",
-    element: <JoinRoom/>,
-    //errorElement: <ErrorBoundary error={null} />,
-  },
-]);
+ ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

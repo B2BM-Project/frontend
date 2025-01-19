@@ -8,13 +8,59 @@ import Task from "../components/Task.tsx";
 import Clock from "../components/Clock.tsx";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { io } from "socket.io-client";
+import {WelcomeRoomModal} from "../components/ConfirmModal.tsx"
+
+const socket = io(`${import.meta.env.VITE_API_URL_SOCKET}`);
 
 function Lobby() {
   const { id } = useParams(); // รับค่า id จาก URL
   const [room, setRoom] = useState();
   const [task, setTask] = useState([]); //Array for map function
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(""); //user ที่ล็อคอิน ดึง token localStorage
+  const [userInRoom, setUserInRoom] = useState([]); //user ที่ล็อคอิน ดึง token localStorage
+  const [isReady, setIsReady] = useState(false); // สถานะ Ready หรือ Unready
   const [error, setError] = useState(null);
+  // Handle Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+       // ฟัง event เมื่อผู้ใช้งานคนอื่นเข้าร่วมห้อง
+    socket.on("user_joined", (data) => {
+      // setUserInRoom([]);
+      setUserInRoom(data.user)
+      console.log(`${data.user} joined room ${data.room}`);
+    });
+    // ฟัง event เมื่อสถานะของผู้ใช้งานเปลี่ยน
+    socket.on("update_ready_status", ({ user, status }) => {
+      console.log(`User ${user.user_id} is now ${status ? "Ready" : "Unready"}`);
+    });
+  }, []);
+
+  // เข้าร่วมห้อง
+  const joinRoom = () => {
+    if (room !== "") {
+      socket.emit("join_room", room.Room_id, user);
+    }
+    closeModal();
+  };
+  const exitRoom = () => {
+    if (room !== "") {
+      socket.emit("leave_room", room.Room_id, user);
+    }
+    alert("exit");
+  };
+  // เปลี่ยนสถานะ Ready หรือ Unready
+  const toggleReadyStatus = () => {
+    setIsReady(!isReady);
+    socket.emit("set_ready_status", {
+      roomId : room.Room_id,
+      user: user,
+      status: !isReady,
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,8 +72,8 @@ function Lobby() {
         await setRoom(roomResponse.data.rooms[0]);
         await setTask(roomResponse.data.tasks);
         await setDurationTime(roomResponse.data.rooms[0].duration);
-        await console.log("Room:", room);
-        await console.log("Task:", task);
+        // await console.log("Room:", room);
+        // await console.log("Task:", task);
         // ใช้ข้อมูลจาก API แรกใน API ที่สอง
         const userResponse = await axios.get(
           `${import.meta.env.VITE_API_URL}/user/me`,
@@ -38,7 +84,9 @@ function Lobby() {
           }
         );
         await setUser(userResponse.data.user);
-        await console.log("User:", user);
+        {openModal()}
+
+        // await console.log("User:", user);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(error.message);
@@ -47,6 +95,12 @@ function Lobby() {
 
     fetchData();
   }, [id]); // เปลี่ยนแค่เมื่อ id เปลี่ยน
+
+  // useEffect(() => {
+  //   if (id) {
+  //     joinRoom(id); // รัน joinRoom เมื่อ id ถูกระบุ
+  //   }
+  // }, [id]);
 
   const [visible, setVisible] = useState(false);
   const [startTime, setStartTime] = useState(false); // ใช้ state ควบคุมการเริ่มจับเวลา
@@ -60,6 +114,13 @@ function Lobby() {
   };
   return (
     <>
+    <WelcomeRoomModal
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            title="Welcome"
+            message="Welcome to the competition room! Prepare yourself for an exciting challenge. Good luck and enjoy"
+            onConfirm={joinRoom}
+          />
       <div className="mainContainer2">
         {/* Left Tab */}
         <div className="mainContainer2-left">
@@ -71,16 +132,21 @@ function Lobby() {
           </div>
           {/* show user's attendance */}
           <div className="leftFrame-profile overflow-auto max-h-40">
-            <Profile
-              img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              name="John Wick"
-              owner={true} //Crown Icon
-              ready={false}
-            />
+            {userInRoom.map((data) => (
+              <Profile
+                key={data.user_id}
+                img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                name={data.username}
+                owner={room.owner == data.user_id ? true : false} //isTrue = Crown Icon
+                ready={isReady}
+              />
+            ))}
           </div>
           {/* show button ready, start */}
           <div className="lobby-btn">
-            <button className="btn-black">Ready</button>
+            <button className="btn-black" onClick={toggleReadyStatus}>
+              Ready
+            </button>
             <button className="btn-red" onClick={handleStartTime}>
               Start
             </button>
@@ -117,7 +183,13 @@ function Lobby() {
               <div className="room-profile-container">
                 <div className="avatar">
                   <div className="w-5 rounded-full">
-                    <img src={user.profile_img == null ? "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" : user.profile_img} />
+                    <img
+                      src={
+                        user.profile_img == null
+                          ? "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                          : user.profile_img
+                      }
+                    />
                   </div>
                 </div>
                 <div id="user-name">
@@ -130,8 +202,8 @@ function Lobby() {
                 <div className="gear-icon">
                   <i className="fa-solid fa-gear fa-xs"></i>
                 </div>
-                <div className="exit-icon">
-                  <i className="fa-solid fa-right-from-bracket fa-xs"></i>
+                <div className="exit-icon" onClick={exitRoom}>
+                  <i className="fa-solid fa-right-from-bracket fa-xs" ></i>
                 </div>
               </div>
             </div>
@@ -141,20 +213,20 @@ function Lobby() {
           <Clock
             key={DurationTime}
             initialTime={DurationTime}
-            start={startTime}
+            start={startTime} //boolean
           />
           {task.map((data, index) => {
-            return(
+            return (
               <Task
                 key={data.Task_id}
-                task_num={`Task Details : ${index+1}`}
+                task_num={`Task Details : ${index + 1}`}
                 task_title={data.Task_title}
                 task_des={data.Task_description}
                 task_ip="http://localhost:5173/lobby-room"
                 task_file={data.Task_file}
                 task_score={data.score}
               />
-            )
+            );
           })}
         </div>
       </div>

@@ -6,7 +6,8 @@ interface ClockProps {
 }
 
 function Clock({ initialTime, start }: ClockProps) {
-    const [timeLeft, setTimeLeft] = useState(initialTime * 3600); // Initial time: 2 hours in second
+    // const [timeLeft, setTimeLeft] = useState(initialTime * 3600); // Initial time: 2 hours in second
+    const [timeLeft, setTimeLeft] = useState(initialTime); // Initial time: 2 hours in second
 
     useEffect(() => {
         if (!start) return; // Do nothing if start is false
