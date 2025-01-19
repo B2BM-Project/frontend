@@ -16,6 +16,7 @@ import CreateRoom from "./pages/CreateRoom.tsx";
 import CreateTask from "./pages/CreateTask.tsx";
 import Lobby from "./pages/Lobby.tsx";
 import ErrorBoundary from "./components/ErrorBoundary.tsx";
+import { AuthProvider } from './context/AuthContext';
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider> {/* ห่อหุ้ม RouterProvider ด้วย AuthProvider */}
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );
