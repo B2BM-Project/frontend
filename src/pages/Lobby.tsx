@@ -6,21 +6,42 @@ import Profile from "../components/Profile.tsx";
 import { useState, useEffect } from "react";
 import Task from "../components/Task.tsx";
 import Clock from "../components/Clock.tsx";
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 import { useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 import {WelcomeRoomModal} from "../components/ConfirmModal.tsx"
 
 const socket = io(`${import.meta.env.VITE_API_URL_SOCKET}`);
 
+interface Room {
+  Room_id: string;
+  Room_name: string;
+  Room_description: string;  
+  Room_password: string;  
+  duration : string;   
+  owner : string;
+}
+interface User {
+  user_id: string;
+  username: string;
+  profile_img: string;
+  display_name: string;
+}
+interface task {
+  Task_id: number;
+  Task_title: string;
+  Task_description: string;
+  Task_file: string;
+  score: string;
+}
+
 function Lobby() {
   const { id } = useParams(); // รับค่า id จาก URL
-  const [room, setRoom] = useState();
-  const [task, setTask] = useState([]); //Array for map function
-  const [user, setUser] = useState(""); //user ที่ล็อคอิน ดึง token localStorage
-  const [userInRoom, setUserInRoom] = useState([]); //user ที่ล็อคอิน ดึง token localStorage
+  const [room, setRoom] = useState<Room>();
+  const [task, setTask] = useState<task[]>([]); //Array for map function
+  const [user, setUser] = useState<User>(); //user ที่ล็อคอิน ดึง token localStorage
+  const [userInRoom, setUserInRoom] = useState<User[]>([]); //user ที่ล็อคอิน ดึง token localStorage
   const [isReady, setIsReady] = useState(false); // สถานะ Ready หรือ Unready
-  const [error, setError] = useState(null);
   // Handle Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
@@ -40,15 +61,15 @@ function Lobby() {
   }, []);
 
   // เข้าร่วมห้อง
-  const joinRoom = () => {
-    if (room !== "") {
-      socket.emit("join_room", room.Room_id, user);
+  const joinRoom = async () => {
+    if (room) {
+      socket.emit("join_room", room?.Room_id, user);
     }
     closeModal();
   };
-  const exitRoom = () => {
-    if (room !== "") {
-      socket.emit("leave_room", room.Room_id, user);
+  const exitRoom = async () => {
+    if (room) {
+      socket.emit("leave_room", room?.Room_id, user);
     }
     alert("exit");
   };
@@ -56,7 +77,7 @@ function Lobby() {
   const toggleReadyStatus = () => {
     setIsReady(!isReady);
     socket.emit("set_ready_status", {
-      roomId : room.Room_id,
+      roomId : room?.Room_id,
       user: user,
       status: !isReady,
     });
@@ -88,30 +109,24 @@ function Lobby() {
 
         // await console.log("User:", user);
       } catch (error) {
-        console.error("Error fetching data:", error);
-        setError(error.message);
+        const axiosError = error as AxiosError;
+        console.error("Error fetching data:", axiosError);
       }
     };
 
     fetchData();
   }, [id]); // เปลี่ยนแค่เมื่อ id เปลี่ยน
 
-  // useEffect(() => {
-  //   if (id) {
-  //     joinRoom(id); // รัน joinRoom เมื่อ id ถูกระบุ
-  //   }
-  // }, [id]);
-
   const [visible, setVisible] = useState(false);
   const [startTime, setStartTime] = useState(false); // ใช้ state ควบคุมการเริ่มจับเวลา
   const [DurationTime, setDurationTime] = useState(room?.duration); // ตั้งค่าเวลาเริ่มต้น (0 ชั่วโมง)
 
   const handleStartTime = () => setStartTime(true); // เริ่มนับถอยหลัง
-  const handleStopTime = () => setStartTime(false); // หยุดการนับถอยหลัง
-  const handleResetTime = () => {
-    setStartTime(false); // หยุดการจับเวลา
-    setDurationTime(3600); // รีเซ็ตเวลาเป็นค่าเริ่มต้น
-  };
+  // const handleStopTime = () => setStartTime(false); // หยุดการนับถอยหลัง
+  // const handleResetTime = () => {
+  //   setStartTime(false); // หยุดการจับเวลา
+  //   setDurationTime("1800"); // รีเซ็ตเวลาเป็นค่าเริ่มต้น
+  // };
   return (
     <>
     <WelcomeRoomModal
@@ -137,7 +152,7 @@ function Lobby() {
                 key={data.user_id}
                 img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                 name={data.username}
-                owner={room.owner == data.user_id ? true : false} //isTrue = Crown Icon
+                owner={room?.owner == data.user_id ? true : false} //isTrue = Crown Icon
                 ready={isReady}
               />
             ))}
@@ -185,16 +200,16 @@ function Lobby() {
                   <div className="w-5 rounded-full">
                     <img
                       src={
-                        user.profile_img == null
+                        user?.profile_img == null
                           ? "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                          : user.profile_img
+                          : user?.profile_img
                       }
                     />
                   </div>
                 </div>
                 <div id="user-name">
-                  <p id="user-name-1">{user.display_name}</p>
-                  <p id="user-name-2">@{user.username}</p>
+                  <p id="user-name-1">{user?.display_name}</p>
+                  <p id="user-name-2">@{user?.username}</p>
                 </div>
               </div>
               {/* setting, exit Icon */}
@@ -212,7 +227,7 @@ function Lobby() {
           <h2 className="text-center text-lg">Lobby</h2>
           <Clock
             key={DurationTime}
-            initialTime={DurationTime}
+            initialTime={DurationTime ? parseInt(DurationTime, 10) : 0} // แปลงค่า DurationTime เป็น number ฐาน10 หรือใช้ 0 ถ้าเป็น undefined
             start={startTime} //boolean
           />
           {task.map((data, index) => {
@@ -223,7 +238,7 @@ function Lobby() {
                 task_title={data.Task_title}
                 task_des={data.Task_description}
                 task_ip="http://localhost:5173/lobby-room"
-                task_file={data.Task_file}
+                task_file={[data.Task_file]}
                 task_score={data.score}
               />
             );

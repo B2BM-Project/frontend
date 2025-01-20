@@ -4,7 +4,23 @@ import Slider from "react-slick";
 import Card from '../components/Card'
 import "../pages/Challenge.css"
 
-function SliderCard(props: {data:any; category: string;title: string ; description: string; route_path: string;img_path: string;}) {
+interface DataItem {
+    title: string;
+    description: string;
+    img_path: string;
+    route_path: string;
+  }
+  
+  interface SliderCardProps {
+    data: DataItem[]; // ใช้ array ของ DataItem
+    category: string;
+    title: string;
+    description: string;
+    route_path: string;
+    img_path: string;
+  }
+
+function SliderCard(props: SliderCardProps) {
     const settings = {
         dots: true,
         infinite: true,
@@ -12,7 +28,7 @@ function SliderCard(props: {data:any; category: string;title: string ; descripti
         slidesToShow: 2,
         slidesToScroll: 2,
     };
-    const data = props.data
+    const data = props.data.flat() // flat array ให้เหลือ มิติเดียว
     return (
         <>
             <div className="category-container">
@@ -23,7 +39,7 @@ function SliderCard(props: {data:any; category: string;title: string ; descripti
                 {data.map((item,idx) => {
                     return(
                         <div key={idx} className="slider-div">
-                            <Card title={item.title} description={item.description} img_path={item.img_path} route_path={item.route_path}/>
+                            <Card key={idx} title={item.title} description={item.description} img_path={item.img_path} route_path={item.route_path}/>
                             {/* <Card title={props.title} description={props.description} img_path={props.img_path} route_path={props.route_path}/> */}
                         </div>
                     )

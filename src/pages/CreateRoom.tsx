@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import NavBar from "../components/NavBar.tsx";
+import Login_Comp from "../components/Login_Comp";
 import TopicPage from "../components/TopicPage.tsx";
 import { useState,useEffect } from "react";
 import "./CreateRoom.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import ConfirmModal from "../components/ConfirmModal.js";
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ function CreateRoom() {
   // form data
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [duration, setDuration] = useState("");
+  const [duration, setDuration] = useState("1800");
   const [usePassword, setUsePassword] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -36,7 +36,7 @@ function CreateRoom() {
       }
     }, [confirmPassword]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault(); // ป้องกันหน้ารีเฟรช
     setError('');
     const formData = {
@@ -60,32 +60,22 @@ function CreateRoom() {
           },
         }
       );
-      console.log("Room created:", response.data);
-      console.log("roomID:", response.data.roomId, "roomToken:", response.data.roomToken);
+      // console.log("Room created:", response.data);
+      // console.log("roomID:", response.data.roomId, "roomToken:", response.data.roomToken);
       localStorage.setItem(`room${response.data.roomId}Token`,response.data.roomToken)
       alert("Room created successfully!");
       closeModal();
       navigate(`/lobby-room/${response.data.roomId}`);
     } catch (error) {
+      const axiosError = error as AxiosError;
       console.error(
         "Error:",
-        error.response ? error.response.data : error.message
+        axiosError.response ? axiosError.response.data : axiosError.message
       );
       alert("Error creating room");
     }
-    // console.log("Form Data:", formData);
-    // alert("submitted Goto Lobby Page");
-    // ส่งข้อมูลไปยัง backend หรือดำเนินการอื่น เช่น reset form data
-    // setTitle("");
-    // setDescription("");
-    // setDuration("1");
-    // setUsePassword(false);
-    // setPassword("");
-    // setConfirmPassword("");
-    // setVisible(false);
-    // setVisible2(false);
   };
-  const handleModal = (e) => {
+  const handleModal = (e: { preventDefault: () => void; }) => {
     e.preventDefault(); // ป้องกันหน้ารีเฟรช
     if (error) return; // ป้องกันไม่ให้เปิด modal หากมี error
     openModal(); // เปิด modal
@@ -93,7 +83,7 @@ function CreateRoom() {
 
   return (
     <>
-      <NavBar onLoginClick={() => setLoginOpen(true)} />
+      <Login_Comp />
       {/* <Loginpopup isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} /> */}
 
       <div className="mainContainer">
@@ -135,11 +125,11 @@ function CreateRoom() {
                   onChange={(e) => setDuration(e.target.value)}
                 >
                   <option value="1800">30 Minutes</option>
-                  <option value="3600">1 Hour</option>
-                  <option value="5400">1 Hour 30 Minutes</option>
-                  <option value="7200">2 Hours</option>
-                  <option value="9000">2 Hour 30 Minutes</option>
-                  <option value="10800">3 Hours</option>
+                  <option value="3600">60 Minutes</option>
+                  <option value="5400">90 Minutes</option>
+                  <option value="7200">120 Minutes</option>
+                  <option value="9000">150 Minutes</option>
+                  <option value="10800">180 Minutes</option>
                 </select>
               </div>
             </div>

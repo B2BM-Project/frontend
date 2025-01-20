@@ -1,12 +1,8 @@
 import Nav_profile from '../components/Nav_profile.tsx';
 import Edit_profile from '../components/Edit_profile.tsx';
-import { useState } from "react";
 import Login_Comp from "../components/Login_Comp";
 
 function Editprofile () {
-
-    const [isLoginOpen, setLoginOpen] = useState(false);
-
     return (
         <>
             <Login_Comp/>

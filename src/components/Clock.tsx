@@ -6,8 +6,8 @@ interface ClockProps {
 }
 
 function Clock({ initialTime, start }: ClockProps) {
-    // const [timeLeft, setTimeLeft] = useState(initialTime * 3600); // Initial time: 2 hours in second
-    const [timeLeft, setTimeLeft] = useState(initialTime); // Initial time: 2 hours in second
+    // const [timeLeft, setTimeLeft] = useState(initialTime * 3600);
+    const [timeLeft, setTimeLeft] = useState(initialTime);
 
     useEffect(() => {
         if (!start) return; // Do nothing if start is false
@@ -39,19 +39,19 @@ function Clock({ initialTime, start }: ClockProps) {
             <div className="grid grid-flow-col gap-5 text-center auto-cols-max justify-center">
                 <div className="flex flex-col">
                     <span className="countdown font-mono text-base justify-center">
-                        <span style={{ "--value": hours }}></span>
+                        <span style={{ "--value": hours }as React.CSSProperties}></span>
                     </span>
                     hours
                 </div>
                 <div className="flex flex-col">
                     <span className="countdown font-mono text-base justify-center">
-                        <span style={{ "--value": minutes }}></span>
+                        <span style={{ "--value": minutes }as React.CSSProperties}></span>
                     </span>
                     min
                 </div>
                 <div className="flex flex-col">
                     <span className="countdown font-mono text-base justify-center">
-                        <span style={{ "--value": seconds }}></span>
+                        <span style={{ "--value": seconds }as React.CSSProperties}></span>
                     </span>
                     sec
                 </div>
