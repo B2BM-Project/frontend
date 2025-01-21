@@ -49,9 +49,26 @@ function Lobby() {
   const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
+    // เมื่อผู้ใช้ตัดการเชื่อมต่อโดยการปิดแท็บ หรือ browser
+    const handleBeforeUnload = () => {
+      if (room) {
+        socket.emit("leave_room", room.Room_id, user); // แจ้ง backend ว่าผู้ใช้ออกจากห้อง
+      }
+    };
+  
+    // ฟัง event ก่อนแท็บถูกปิด
+    window.addEventListener("beforeunload", handleBeforeUnload);
+  
+    return () => {
+      // ลบ event listener เพื่อป้องกัน memory leak
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [room, user]);
+
+  useEffect(() => {
        // ฟัง event เมื่อผู้ใช้งานคนอื่นเข้าร่วมห้อง
-    socket.on("user_joined", (data) => { //data.user[0]
-      setUserInRoom(data.user)
+    socket.on("user_joined", async (data) => { //data.user[0]
+      await setUserInRoom(data.user)
       // console.log(`${data?.user[0].username} joined/leave room ${data.roomId}`); //ถ้าไม่มี index จะ error
     });
     // ฟัง event เมื่อสถานะของผู้ใช้งานเปลี่ยน
