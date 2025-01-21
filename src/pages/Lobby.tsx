@@ -50,10 +50,9 @@ function Lobby() {
 
   useEffect(() => {
        // ฟัง event เมื่อผู้ใช้งานคนอื่นเข้าร่วมห้อง
-    socket.on("user_joined", (data) => {
-      console.log(`${data?.user[0].user_id} : ${data?.user[0].username}`);
+    socket.on("user_joined", (data) => { //data.user[0]
       setUserInRoom(data.user)
-      console.log(`${data?.user[0].username} joined room ${data.roomId}`);
+      // console.log(`${data?.user[0].username} joined/leave room ${data.roomId}`); //ถ้าไม่มี index จะ error
     });
     // ฟัง event เมื่อสถานะของผู้ใช้งานเปลี่ยน
     socket.on("update_ready_status", (payload) => {
@@ -76,7 +75,7 @@ function Lobby() {
     if (room) {
       socket.emit("leave_room", room?.Room_id, user);
     }
-    alert("exit");
+    alert(`${user?.username} : exit room ${room?.Room_id}`);
   };
   // เปลี่ยนสถานะ Ready หรือ Unready
   const toggleReadyStatus = () => {
