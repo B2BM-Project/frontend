@@ -26,6 +26,7 @@ interface User {
   username: string;
   profile_img: string;
   display_name: string;
+  ready_status: boolean; // ใช้กับ userInRoom
 }
 interface task {
   Task_id: number;
@@ -40,7 +41,7 @@ function Lobby() {
   const [room, setRoom] = useState<Room>();
   const [task, setTask] = useState<task[]>([]); //Array for map function
   const [user, setUser] = useState<User>(); //user ที่ล็อคอิน ดึง token localStorage
-  const [userInRoom, setUserInRoom] = useState<User[]>([]); //user ที่ล็อคอิน ดึง token localStorage
+  const [userInRoom, setUserInRoom] = useState<User[]>([]); //user ที่อยู่ในห้อง
   const [isReady, setIsReady] = useState(false); // สถานะ Ready หรือ Unready
   // Handle Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,13 +51,17 @@ function Lobby() {
   useEffect(() => {
        // ฟัง event เมื่อผู้ใช้งานคนอื่นเข้าร่วมห้อง
     socket.on("user_joined", (data) => {
-      // setUserInRoom([]);
+      console.log(`${data?.user[0].user_id} : ${data?.user[0].username}`);
       setUserInRoom(data.user)
-      console.log(`${data.user} joined room ${data.room}`);
+      console.log(`${data?.user[0].username} joined room ${data.roomId}`);
     });
     // ฟัง event เมื่อสถานะของผู้ใช้งานเปลี่ยน
-    socket.on("update_ready_status", ({ user, status }) => {
-      console.log(`User ${user.user_id} is now ${status ? "Ready" : "Unready"}`);
+    socket.on("update_ready_status", (payload) => {
+      if (payload && payload.user) {
+        setUserInRoom(payload.user); // อัปเดตสถานะผู้ใช้ในห้อง
+      } else {
+        console.error("Invalid payload received:", payload);
+      }
     });
   }, []);
 
@@ -113,7 +118,6 @@ function Lobby() {
         console.error("Error fetching data:", axiosError);
       }
     };
-
     fetchData();
   }, [id]); // เปลี่ยนแค่เมื่อ id เปลี่ยน
 
@@ -153,7 +157,7 @@ function Lobby() {
                 img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                 name={data.username}
                 owner={room?.owner == data.user_id ? true : false} //isTrue = Crown Icon
-                ready={isReady}
+                ready={data.ready_status ?? false} 
               />
             ))}
           </div>
