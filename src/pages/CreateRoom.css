@@ -39,9 +39,10 @@
     border-radius: 15px;    
     padding: 5px 15px;
     margin: 0 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     background-color: #278933;
-    min-width: 146px;
+    min-width: auto;
+    /* min-width: 146px; */
 }
 .btn-red:hover{
     border: 3px solid white;
@@ -52,8 +53,9 @@
     border-radius: 15px;    
     padding: 5px 15px;
     margin: 0 0.5rem;
-    font-size: 0.9rem;
-    min-width: 146px;
+    font-size: 0.8rem;
+    min-width: auto;
+    /* min-width: 146px; */
 }
 .btn-black:hover{
     border: 3px solid white;

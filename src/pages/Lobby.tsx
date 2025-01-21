@@ -165,7 +165,7 @@ function Lobby() {
             <button className="btn-black" onClick={toggleReadyStatus}>
               Ready
             </button>
-            <button className="btn-red" onClick={handleStartTime}>
+            <button className="btn-red " onClick={handleStartTime}>
               Start
             </button>
           </div>
