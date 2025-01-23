@@ -84,6 +84,11 @@ function Lobby() {
     socket.on("update_remaining_time", ({ remainingTime }) => {
       setTimeLeft(Math.ceil(remainingTime));
     });
+    // ฟัง event time_up เพื่อแจ้งเตือนเมื่อหมดเวลา
+    socket.on("time_up", () => {
+        alert("Time Up!");
+    });
+
   }, []);
 
   // เข้าร่วมห้อง
@@ -182,7 +187,7 @@ function Lobby() {
               <Profile
                 key={data.user_id}
                 img="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                name={data.username}
+                name={data.display_name ?? data.username}
                 owner={room?.owner == data.user_id ? true : false} //isTrue = Crown Icon
                 ready={data.ready_status ?? false} 
               />
@@ -190,9 +195,10 @@ function Lobby() {
           </div>
           {/* show button ready, start */}
           <div className="lobby-btn">
-            <button className="btn-black" onClick={toggleReadyStatus}>
-              Ready
-            </button>
+          {room?.owner !== user?.user_id && (
+            isReady ? (<button className="btn-black" onClick={toggleReadyStatus}>Unready</button>) : (<button className="btn-green" onClick={toggleReadyStatus}>Ready</button>)
+            
+            )}
             {room?.owner === user?.user_id && (
               startTime ? (
                 <button className="btn-red" onClick={handleStartTime}>Reset</button>
