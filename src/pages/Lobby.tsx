@@ -79,6 +79,11 @@ function Lobby() {
         console.error("Invalid payload received:", payload);
       }
     });
+
+    // ฟัง event timer_started
+    socket.on("update_remaining_time", ({ remainingTime }) => {
+      setTimeLeft(Math.ceil(remainingTime));
+    });
   }, []);
 
   // เข้าร่วมห้อง
@@ -114,6 +119,7 @@ function Lobby() {
         await setRoom(roomResponse.data.rooms[0]);
         await setTask(roomResponse.data.tasks);
         await setDurationTime(roomResponse.data.rooms[0].duration);
+        await setTimeLeft(roomResponse.data.rooms[0].duration);
         // await console.log("Room:", room);
         // await console.log("Task:", task);
         // ใช้ข้อมูลจาก API แรกใน API ที่สอง
@@ -139,13 +145,18 @@ function Lobby() {
 
   const [visible, setVisible] = useState(false);
   const [startTime, setStartTime] = useState(false); // ใช้ state ควบคุมการเริ่มจับเวลา
-  const [DurationTime, setDurationTime] = useState(room?.duration); // ตั้งค่าเวลาเริ่มต้น (0 ชั่วโมง)
+  const [durationTime, setDurationTime] = useState(room?.duration); // ตั้งค่าเวลาเริ่มต้น (0 ชั่วโมง)
+  const [timeLeft, setTimeLeft] = useState<number>();// set เวลาเริ่มต้น
 
-  const handleStartTime = () => setStartTime(true); // เริ่มนับถอยหลัง
+  // เริ่มนับถอยหลัง
+  const handleStartTime = () => {
+    socket.emit("start_timer", timeLeft, !startTime, durationTime, room?.Room_id);
+    setStartTime(!startTime);
+  } 
   // const handleStopTime = () => setStartTime(false); // หยุดการนับถอยหลัง
   // const handleResetTime = () => {
   //   setStartTime(false); // หยุดการจับเวลา
-  //   setDurationTime("1800"); // รีเซ็ตเวลาเป็นค่าเริ่มต้น
+  //   setDurationTime(durationTime); // รีเซ็ตเวลาเป็นค่าเริ่มต้น
   // };
   return (
     <>
@@ -183,7 +194,7 @@ function Lobby() {
               Ready
             </button>
             <button className="btn-red " onClick={handleStartTime}>
-              Start
+            {startTime ? "Reset" : "Start"}
             </button>
           </div>
         </div>
@@ -246,9 +257,9 @@ function Lobby() {
           {/* Content section */}
           <h2 className="text-center text-lg">Lobby</h2>
           <Clock
-            key={DurationTime}
-            initialTime={DurationTime ? parseInt(DurationTime, 10) : 0} // แปลงค่า DurationTime เป็น number ฐาน10 หรือใช้ 0 ถ้าเป็น undefined
-            start={startTime} //boolean
+            key={user?.user_id}
+            // initialTime={durationTime ? parseInt(durationTime, 10) : 0} // แปลงค่า durationTime เป็น number ฐาน10 หรือใช้ 0 ถ้าเป็น undefined
+            initialTime={timeLeft ?? parseInt(durationTime!, 10)} // แปลงค่า durationTime เป็น number ฐาน10 หรือใช้ 0 ถ้าเป็น undefined
           />
           {task.map((data, index) => {
             return (
