@@ -6,7 +6,7 @@ const ErrorPage = () => {
     let errorInfo;
 
     try {
-        errorInfo = JSON.parse(error.message);
+        errorInfo = JSON.parse((error as Error).message);
     } catch {
         errorInfo = { message: "Unknown error occurred", status: 500 };
     }

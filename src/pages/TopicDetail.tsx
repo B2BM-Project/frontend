@@ -1,38 +1,55 @@
-import NavBar from "../components/NavBar";
 import TopicPage from "../components/TopicPage";
 import "./TopicDetail.css"
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import Login_Comp from "../components/Login_Comp";
 
+interface SubDetail {
+    sub: string;
+    img: string;
+  }
+  interface TopicDetail {
+    id: number;
+    description: SubDetail[];
+    HowtoPrevent: SubDetail[];
+    ExampleAttackScenarios: SubDetail[];
+    title: string;
+    proposition: SubDetail[];
+  }
+  interface Data {
+    topic_detail: TopicDetail[];
+  }
 
 function TopicDetail() {
-    const [data, setData] = useState([]);
+    const { id } = useParams(); // รับค่า id จาก URL
+    const [data, setData] = useState<Data>({ topic_detail: [] });
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState("");
+
 
     // fetch ข้อมูล จาก URL 
     useEffect(() => {
         // ฟังก์ชันเพื่อดึงข้อมูล
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/detail/3`);
-                setData(response.data);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/detail/${id}`);
+                await setData(response.data);
             } catch (err) {
-                setError(err.message);
+                setError((err as Error).message);
             } finally {
                 setLoading(false);
             }
         };
         fetchData();
-    }, []);
+    }, [id]);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
     console.log(data)
 
     return (
         <>
-        <NavBar onLoginClick={undefined} />
+        <Login_Comp/>
         <div className="mainContainer">
             <div className="bgFrame">
                 {data?.topic_detail?.map((item,index) => (
@@ -86,7 +103,7 @@ function TopicDetail() {
                 </div>
                 {/* แสดง Explain Proposition */}
                     <p className="subTopic">โจทย์ (Proposition)</p>
-                    {data?.topic_detail?.map((item,index) => (
+                    {data?.topic_detail?.map((item) => (
                     <ol>
                         {item.proposition?.map((propo, index) => (
                         <li key={index}>{propo.sub}</li>

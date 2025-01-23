@@ -1,7 +1,6 @@
 import Login_Comp from "../components/Login_Comp";
 import Nav_profile from '../components/Nav_profile.tsx';
 import Main_profile from '../components/Main_profile.tsx';
-import { useState } from "react";
 
 function Profile () {
     return (

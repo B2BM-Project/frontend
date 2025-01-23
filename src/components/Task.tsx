@@ -1,7 +1,7 @@
 import "../pages/CreateRoom.css"
-import TopicPage from './TopicPage.tsx';
+// import TopicPage from './TopicPage.tsx';
 
-function Task(props: {task_num: string;task_title: string; task_des: string; task_ip: string; task_file: string;task_score: string;}) {
+function Task(props: {task_num: string;task_title: string; task_des: string; task_ip: string; task_file: string[];task_score: string;}) {
     
     // const numFile = props.task_file.length
     // console.log("NumFile :", numFile);
@@ -18,13 +18,13 @@ function Task(props: {task_num: string;task_title: string; task_des: string; tas
             <p className="whitespace-pre-wrap text-base">Task Title          :      {props.task_title}</p>
             <p className="whitespace-pre-wrap text-base">Description      :      {props.task_des}</p>
             <p className="whitespace-pre-wrap text-base">IP Address        :      {props.task_ip}</p>
-            {props.task_file.length <= 1 &&
-                <p className="whitespace-pre-wrap text-base">File                      :      {props.task_file}</p>
+            {props.task_file.length === 1 &&
+                <p className="whitespace-pre-wrap text-base">File                      :      {props.task_file[0]}</p>
             }
             {props.task_file.length > 1 &&    
                 props.task_file.map((file, index) => {
                     return(
-                        index == 0 ? <p key={index} className="whitespace-pre-wrap text-base">File                      :      {file}</p>
+                        index === 0 ? <p key={index} className="whitespace-pre-wrap text-base">File                      :      {file}</p>
                         : <p key={index} className="whitespace-pre-wrap text-base">                              :      {file}</p> 
                     )})
             } 

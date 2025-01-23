@@ -1,20 +1,21 @@
-import NavBar from "../components/NavBar"
+import Login_Comp from "../components/Login_Comp";
 import TopicPage from '../components/TopicPage.tsx';
 import "../App.css"
 import "./CreateRoom.css"
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import { FormEvent } from 'react';
 
 function CreateTask() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [flag, setFlag] = useState("");
   const [score, setScore] = useState("10");
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState<FileList | null>(null);
   const [link, setLink] = useState(""); 
-  const navigate = useNavigate(); // ใช้ navigate เพื่อเปลี่ยนหน้า
+  // const navigate = useNavigate(); // ใช้ navigate เพื่อเปลี่ยนหน้า
 
   // function for upload file
   const upload = () => {
@@ -24,7 +25,7 @@ function CreateTask() {
     }
     if (file.length > 2) {
       alert('You can only upload up to 2 files.');
-      return setFile("");;
+      return setFile(null);
     }
     const uploadData = new FormData();
     for (let i = 0; i < file.length; i++) {
@@ -44,8 +45,9 @@ function CreateTask() {
         });
   }
   // function for submit form
-  const handleSave = async (e) => {
+  const handleSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.target as HTMLFormElement; // กำหนดประเภทให้กับ e.target เป็น HTMLFormElement
     const submitData = {
         title,
         description,
@@ -62,19 +64,19 @@ function CreateTask() {
       alert("An error occurred while submitting the form.");
     }
     // Reset form DOM
-    e.target.reset();
+    form.reset();
     // Reset state
-    setTitle("");
-    setDescription("");
-    setFile("");
-    setLink("");
-    setScore("10");
-    setFlag("")
+    // setTitle("");
+    // setDescription("");
+    // setFile("");
+    // setLink("");
+    // setScore("10");
+    // setFlag("")
     
 };
 return (
     <>
-      <NavBar onLoginClick={() => setLoginOpen(true)} />
+      <Login_Comp/>
       <div className="mainContainer">
         <div className="bgFrame">
           <TopicPage page="Create Task"></TopicPage>

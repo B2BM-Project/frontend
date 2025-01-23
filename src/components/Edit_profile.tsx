@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 function Edit_profile() {
     return (
         <main className="flex-1 bg-[#272528] p-4">

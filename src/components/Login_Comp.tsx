@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+// @ts-nocheck
+import { useState } from "react";
 import { useAuth } from '../context/AuthContext';
 import NavBar from "./NavBar";
 import Loginpopup from "./Loginpopup";

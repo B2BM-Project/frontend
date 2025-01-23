@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { createBrowserRouter, RouterProvider, useRouteError  } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Learn from "./pages/Learn.tsx";
 import Challenge from "./pages/Challenge.tsx";
 import Competition from "./pages/Competition.tsx";
@@ -15,14 +15,14 @@ import SelectLesson from "./pages/SelectLesson.tsx";
 import CreateRoom from "./pages/CreateRoom.tsx";
 import CreateTask from "./pages/CreateTask.tsx";
 import Lobby from "./pages/Lobby.tsx";
-import ErrorBoundary from "./components/ErrorBoundary.tsx";
+// import ErrorBoundary from "./components/ErrorBoundary.tsx";
 import { AuthProvider } from './context/AuthContext';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
-    //errorElement: <ErrorBoundary error={null} />,
+    // errorElement: <ErrorBoundary error={null} />,
   },
   {
     path: "/learn",
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
     //errorElement: <ErrorBoundary error={null} />,
   },
   {
-    path: "/topic-detail",
+    path: "/topic-detail/:id",
     element: <TopicDetail/>,
     //errorElement: <ErrorBoundary error={null} />,
   },

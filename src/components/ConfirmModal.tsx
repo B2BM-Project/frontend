@@ -38,13 +38,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, title, mes
 
   if (!isOpen) return null; // ซ่อน modal ถ้า `isOpen` เป็น false
 
-  // ป้องกันการรีเฟรชเมื่อกดปุ่ม
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault(); // หยุดการทำงานของปุ่มที่อาจจะทำให้หน้ารีเฟรช
-    onConfirm(e); // เรียกฟังก์ชัน onConfirm ที่ถูกส่งผ่าน prop
-  };
-
-  return (
+   return (
     <>
     {/* Backdrop สำหรับเพิ่ม opacity */}
     <div className="fixed inset-0 bg-black bg-opacity-70 z-40"></div>
@@ -68,8 +62,6 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, title, mes
 
 export default ConfirmModal;
 
-/* eslint-disable react-hooks/exhaustive-deps */
-
 interface ConfirmModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -78,40 +70,8 @@ interface ConfirmModalProps {
   onConfirm: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>;  // เปลี่ยนประเภทให้รองรับ async function
 }
 
-export const WelcomeRoomModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, title, message, onConfirm }) => {
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      onClose(); // ปิด modal เมื่อกด ESC
-    }
-  };
-
-  const handleClickOutside = (e: MouseEvent) => {
-    const modal = document.querySelector(".modal-box") as HTMLElement;
-    if (modal && !modal.contains(e.target as Node)) {
-      onClose(); // ปิด modal เมื่อคลิคนอก modal
-    }
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      window.addEventListener("keydown", handleKeyDown);
-      window.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      // ลบ event listener เมื่อ modal ถูกปิด
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
-
-  if (!isOpen) return null; // ซ่อน modal ถ้า `isOpen` เป็น false
-
-  // ป้องกันการรีเฟรชเมื่อกดปุ่ม
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault(); // หยุดการทำงานของปุ่มที่อาจจะทำให้หน้ารีเฟรช
-    onConfirm(e); // เรียกฟังก์ชัน onConfirm ที่ถูกส่งผ่าน prop
-  };
+export const WelcomeRoomModal: React.FC<ConfirmModalProps> = ({ isOpen, title, message, onConfirm }) => {
+   if (!isOpen) return null; // ซ่อน modal ถ้า `isOpen` เป็น false
 
   return (
     <>

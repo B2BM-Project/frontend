@@ -3,8 +3,15 @@ import { Link } from "react-router-dom";
 import Login_Comp from "../components/Login_Comp";
 import TopicPage from '../components/TopicPage';
 
+interface Room {
+  Room_id: string;
+  Room_name: string;
+  Room_description?: string;  
+  Room_password?: string;     
+}
+
 function Competition() {
-  const [rooms, setRooms] = useState([]);
+  const [rooms, setRooms] = useState<Room[]>([]);
   
   useEffect(() => {
     const fetchRooms = async () => {
