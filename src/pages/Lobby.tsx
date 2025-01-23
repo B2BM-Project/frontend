@@ -193,9 +193,13 @@ function Lobby() {
             <button className="btn-black" onClick={toggleReadyStatus}>
               Ready
             </button>
-            <button className="btn-red " onClick={handleStartTime}>
-            {startTime ? "Reset" : "Start"}
-            </button>
+            {room?.owner === user?.user_id && (
+              startTime ? (
+                <button className="btn-red" onClick={handleStartTime}>Reset</button>
+              ) : (
+                <button className="btn-green" onClick={handleStartTime}>Start</button>
+              )
+            )}
           </div>
         </div>
         {/* Right Tab */}
@@ -245,9 +249,11 @@ function Lobby() {
               </div>
               {/* setting, exit Icon */}
               <div className="room-setting-container">
-                <div className="gear-icon">
+              {room?.owner === user?.user_id &&
+                <div className="gear-icon" >
                   <i className="fa-solid fa-gear fa-xs"></i>
                 </div>
+              }
                 <div className="exit-icon" onClick={exitRoom}>
                   <i className="fa-solid fa-right-from-bracket fa-xs" ></i>
                 </div>
