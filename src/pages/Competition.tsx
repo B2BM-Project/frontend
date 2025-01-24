@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Login_Comp from "../components/Login_Comp";
 import TopicPage from '../components/TopicPage';
 
 function Competition() {
   const [rooms, setRooms] = useState([]);
-  
+  const navigate = useNavigate(); // สำหรับการนำทาง
+
   useEffect(() => {
     const fetchRooms = async () => {
       try {
@@ -20,6 +21,10 @@ function Competition() {
 
     fetchRooms(); // เรียกฟังก์ชันเมื่อ component โหลด
   }, []);
+
+  const handleJoinRoom = (roomId) => {
+    navigate(`/lobby-room/${roomId}`); // เปลี่ยนเส้นทางไปยังหน้า join room
+  };
 
   return (
     <>
@@ -47,9 +52,9 @@ function Competition() {
           </div>
           <div className="overflow-x-auto">
               {rooms.length === 0 ? (
-                <p>No rooms available.</p> // แสดงข้อความเมื่อไม่มีข้อมูล
+                <p>No rooms available.</p>
               ) : (
-                <table className="table table-zebra table-sm w-full">
+                <table className="table table-sm w-full">
                   <thead>
                     <tr className="bg-[#F03535] text-[#ffffff]">
                       <th>ID</th>
@@ -60,7 +65,11 @@ function Competition() {
                   </thead>
                   <tbody>
                     {rooms.map((room) => (
-                      <tr key={room.Room_id}>
+                      <tr
+                        key={room.Room_id}
+                        className="cursor-pointer hover:bg-[#F03535]" 
+                        onClick={() => handleJoinRoom(room.Room_id)} 
+                      >
                         <td>{room.Room_id}</td>
                         <td>{room.Room_name}</td>
                         <td>{room.Room_description || 'N/A'}</td>
